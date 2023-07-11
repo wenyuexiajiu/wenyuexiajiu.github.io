@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2023/07/07/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>butterfly主题修改字体</title>
+    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
+    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
+<p>目录截图：<br><img src="/../images/directory.png"></p>
+<p>内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
+<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
+<p>其他格式字体的常见示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，font-family 字段是可以自己定义的哦</p>
+<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
+<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
+<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
 ]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>ES6学习</title>
@@ -258,28 +264,22 @@
 ]]></content>
   </entry>
   <entry>
-    <title>butterfly主题修改字体</title>
-    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
-    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
-<p>目录截图：<br><img src="/../images/directory.png"></p>
-<p>内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+    <title>Hello World</title>
+    <url>/2023/07/07/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
-<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
-<p>其他格式字体的常见示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，font-family 字段是可以自己定义的哦</p>
-<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
-<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
-<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
   </entry>
   <entry>
     <title>butterfly添加本地搜索</title>
@@ -521,6 +521,19 @@
 ]]></content>
   </entry>
   <entry>
+    <title>hexo博客运行命令</title>
+    <url>/2023/07/09/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>运行  </p>
+<pre><code>npx hexo clean
+npx hexo g
+npx hexo s
+</code></pre>
+<p>使用hexo-admin编辑文档<br>首先进入hexo创建的博客项目的根目录下，执行<br> <code>npm install --save hexo-admin</code><br>mac可能需要root权限，前面加个sudo 就可以了。如果报错缺少组件，则缺少什么安装什么，npm install 加缺少的组件。</p>
+<p>运行下列命令启动hexo-admin ：<br><code>npx hexo server -d</code><br>打开 <a href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> 就可以访问到hexo-admin管理页面了。</p>
+<p>自动部署自github上<br><code>npx hexo d</code></p>
+]]></content>
+  </entry>
+  <entry>
     <title>volta安装及使用</title>
     <url>/2023/06/07/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
@@ -540,19 +553,6 @@
       <tags>
         <tag>web前端</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>hexo博客运行命令</title>
-    <url>/2023/07/09/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p>运行  </p>
-<pre><code>npx hexo clean
-npx hexo g
-npx hexo s
-</code></pre>
-<p>使用hexo-admin编辑文档<br>首先进入hexo创建的博客项目的根目录下，执行<br> <code>npm install --save hexo-admin</code><br>mac可能需要root权限，前面加个sudo 就可以了。如果报错缺少组件，则缺少什么安装什么，npm install 加缺少的组件。</p>
-<p>运行下列命令启动hexo-admin ：<br><code>npx hexo server -d</code><br>打开 <a href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> 就可以访问到hexo-admin管理页面了。</p>
-<p>自动部署自github上<br><code>npx hexo d</code></p>
-]]></content>
   </entry>
   <entry>
     <title>vue-router导航守卫</title>
