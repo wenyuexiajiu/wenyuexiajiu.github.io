@@ -261,7 +261,47 @@
 <td>单元格</td>
 </tr>
 </tbody></table>
-]]></content>
+<h1 id="运算符的扩展"><a href="#运算符的扩展" class="headerlink" title="运算符的扩展"></a>运算符的扩展</h1><table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="center">含义</th>
+<th align="left">示例</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">**</td>
+<td align="center">指数运算符</td>
+<td align="left">2 ** 2 &#x2F;&#x2F; 4<br>2 ** 3 &#x2F;&#x2F; 8</td>
+<td>该运算符为<font color="red">右结合</font>,例：<br>&#x2F;&#x2F; 相当于 2 ** (3 ** 2)<br>2 ** 3 ** 2<br> &#x2F;&#x2F; 512</td>
+</tr>
+<tr>
+<td align="left">**&#x3D;</td>
+<td align="center">单元格</td>
+<td align="left">let a &#x3D; 1.5;<br>a **&#x3D; 2;<br>&#x2F;&#x2F; 等同于 a &#x3D; a * a;<br>let b &#x3D; 4;<br>b **&#x3D; 3;<br>&#x2F;&#x2F; 等同于 b &#x3D; b * b * b;</td>
+<td>单元格</td>
+</tr>
+<tr>
+<td align="left">?.</td>
+<td align="center">链判断运算符</td>
+<td align="left">- obj?.prop &#x2F;&#x2F; 对象属性是否存在<br>- obj?.[expr] &#x2F;&#x2F; 同上<br>- func?.(…args) &#x2F;&#x2F; 函数或对象方法是否存在</td>
+<td><div style="width: 260px"> ·括号的影响<br>如果属性链有圆括号，链判断运算符对圆括号外部没有影响，只对圆括号内部有影响，不管a对象是否存在，圆括号后面的.c总是会执行。例：<br>(a?.b).c<br>&#x2F;&#x2F; 等价于<br>(a &#x3D;&#x3D; null ? undefined : a.b).c<br>一般来说，使用?.运算符的场合，不应该使用圆括号<hr>·报错场合<br>以下写法是禁止的，会报错<br>&#x2F;&#x2F; 构造函数<br>new a?.()<br>new a?.b()<br>&#x2F;&#x2F; 链判断运算符的右侧有模板字符串<br>a?.<code>&#123;b&#125;</code><br>a?.b<code>&#123;c&#125;</code><br>&#x2F;&#x2F; 链判断运算符的左侧是 super<br>super?.()<br>super?.foo<br>&#x2F;&#x2F; 链运算符用于赋值运算符左侧<br>a?.b &#x3D; c<hr>·右侧不得为十进制数值<br>例：foo?.3:0被解析成foo ? .3 : 0，会按照三元运算符进行处理，也就是说，那个小数点会归属于后面的十进制数字，形成一个小数</div></td>
+</tr>
+<tr>
+<td align="left">??</td>
+<td align="center">Null 判断运算符</td>
+<td align="left"><div style="width: 240px">const headerText &#x3D; response.settings.headerText ?? ‘Hello, world!’;<br>const animationDuration &#x3D; response.settings.animationDuration ?? 300;<br>默认值只有在左侧属性值为null或undefined时，才会生效</div></td>
+<td>如果多个逻辑运算符一起使用，必须用括号表明优先级，否则会报错,例：<br>&#x2F;&#x2F; 报错<br>lhs &amp;&amp; middle ?? rhs<br>&#x2F;&#x2F; 正确写法<br>(lhs &amp;&amp; middle) ?? rhs;<br>lhs &amp;&amp; (middle ?? rhs);</td>
+</tr>
+<tr>
+<td align="left">逻辑赋值运算符</td>
+<td align="center">单元格</td>
+<td align="left">单元格</td>
+<td>单元格</td>
+</tr>
+</tbody></table>
+<h1 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h1>]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
@@ -280,6 +320,40 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>hexo博客运行命令</title>
+    <url>/2023/07/09/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>运行  </p>
+<pre><code>npx hexo clean
+npx hexo g
+npx hexo s
+</code></pre>
+<p>使用hexo-admin编辑文档<br>首先进入hexo创建的博客项目的根目录下，执行<br> <code>npm install --save hexo-admin</code><br>mac可能需要root权限，前面加个sudo 就可以了。如果报错缺少组件，则缺少什么安装什么，npm install 加缺少的组件。</p>
+<p>运行下列命令启动hexo-admin ：<br><code>npx hexo server -d</code><br>打开 <a href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> 就可以访问到hexo-admin管理页面了。</p>
+<p>自动部署自github上<br><code>npx hexo d</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>volta安装及使用</title>
+    <url>/2023/06/07/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
+<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
+<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
+<ul>
+<li>volta</li>
+<li>volta-migrate</li>
+<li>volta-shim</li>
+</ul>
+<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
+<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
+<p>大功告成</p>
+]]></content>
+      <tags>
+        <tag>web前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>butterfly添加本地搜索</title>
@@ -519,40 +593,6 @@
 </code></pre>
 <p>具体配置参考官方说明：<a href="https://github.com/wzpan/hexo-generator-search">https://github.com/wzpan/hexo-generator-search</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>hexo博客运行命令</title>
-    <url>/2023/07/09/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p>运行  </p>
-<pre><code>npx hexo clean
-npx hexo g
-npx hexo s
-</code></pre>
-<p>使用hexo-admin编辑文档<br>首先进入hexo创建的博客项目的根目录下，执行<br> <code>npm install --save hexo-admin</code><br>mac可能需要root权限，前面加个sudo 就可以了。如果报错缺少组件，则缺少什么安装什么，npm install 加缺少的组件。</p>
-<p>运行下列命令启动hexo-admin ：<br><code>npx hexo server -d</code><br>打开 <a href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> 就可以访问到hexo-admin管理页面了。</p>
-<p>自动部署自github上<br><code>npx hexo d</code></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>volta安装及使用</title>
-    <url>/2023/06/07/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
-<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
-<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
-<ul>
-<li>volta</li>
-<li>volta-migrate</li>
-<li>volta-shim</li>
-</ul>
-<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
-<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
-<p>大功告成</p>
-]]></content>
-      <tags>
-        <tag>web前端</tag>
-      </tags>
   </entry>
   <entry>
     <title>vue-router导航守卫</title>
