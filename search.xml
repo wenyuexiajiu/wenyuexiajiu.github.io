@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>butterfly主题修改字体</title>
-    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
-    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
-<p>目录截图：<br><img src="/../images/directory.png"></p>
-<p>内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
-<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
-<p>其他格式字体的常见示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，font-family 字段是可以自己定义的哦</p>
-<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
-<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
-<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ES6学习</title>
     <url>/2023/07/11/ES6%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h2 id="rest参数与扩展运算符区别"><a href="#rest参数与扩展运算符区别" class="headerlink" title="rest参数与扩展运算符区别"></a>rest参数与扩展运算符区别</h2><h3 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h3><p>rest 参数叫做不定（剩余）参数，写法就是 … 返回数组结构。<font color="red">这个 … 必须要加到最后一项。只能在结构中的最后。</font></p>
@@ -301,7 +277,87 @@
 <td>单元格</td>
 </tr>
 </tbody></table>
-<h1 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h1>]]></content>
+<h1 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h1><p>ES6 引入了一种新的原始数据类型<font color="red">Symbol</font>，表示独一无二的值。它属于 JavaScript 语言的原生数据类型之一，其他数据类型是：undefined、null、布尔值（Boolean）、字符串（String）、数值（Number）、大整数（BigInt）、对象（Object）  </p>
+<p><font color="red">注意，Symbol()函数前不能使用new命令，否则会报错。</font><br>因为生成的 Symbol 是一个原始类型的值，不是对象。另外，由于 Symbol 值不是对象，所以也不能添加属性。基本上，它是一种类似于字符串的数据类型。  </p>
+<p>Symbol()函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述。这主要是为了在控制台显示，或者转为字符串时，比较容易区分。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let s1 = Symbol(&#x27;foo&#x27;);</span><br><span class="line">let s2 = Symbol(&#x27;bar&#x27;);</span><br><span class="line"></span><br><span class="line">s1 // Symbol(foo)</span><br><span class="line">s2 // Symbol(bar)</span><br><span class="line"></span><br><span class="line">s1.toString() // &quot;Symbol(foo)&quot;</span><br><span class="line">s2.toString() // &quot;Symbol(bar)&quot;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<font color="red">s1</font>和<font color="red">s2</font>是两个 Symbol 值。如果不加参数，它们在控制台的输出都是<font color="red">Symbol()</font>，不利于区分。有了参数以后，就等于为它们加上了描述，输出的时候就能够分清，到底是哪一个值。</p>
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="center">含义</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Symbol.prototype.description</td>
+<td align="center">返回 Symbol 值的描述</td>
+<td align="left">const sym &#x3D; Symbol(‘foo’);<br>sym.description &#x2F;&#x2F; “foo”</td>
+</tr>
+<tr>
+<td align="left">Symbol.for(key)</td>
+<td align="center">根据给定的键 key，来从运行时的 symbol 注册表中找到对应的 symbol，如果找到了，则返回它，否则就新建一个以该字符串为名称的 Symbol 值，并将其注册到全局</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.hasInstance</td>
+<td align="center">判断某对象是否为某构造器的实例</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.isConcatSpreadable</td>
+<td align="center">配置某对象作为Array.prototype.concat()方法的参数时是否展开其数组元素</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.species</td>
+<td align="center">是个函数值属性，其被构造函数用以创建派生对象</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.match</td>
+<td align="center">指向一个函数。当执行str.match(myObject)时，如果该属性存在，会调用它，返回该方法的返回值</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.replace</td>
+<td align="center">这个属性指定了当一个字符串替换所匹配字符串时所调用的方法</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.search</td>
+<td align="center">指定了一个搜索方法，这个方法接受用户输入的正则表达式，返回该正则表达式在字符串中匹配到的下标，这个方法由以下的方法来调用 String.prototype.search()</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.split</td>
+<td align="center">指向 一个正则表达式的索引处分割字符串的方法。这个方法通过 String.prototype.split() 调用</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.iterator</td>
+<td align="center">指向该对象的默认遍历器方法。该迭代器可以被 for…of 循环使用</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.toPrimitive</td>
+<td align="center">是内置的 symbol 属性，其指定了一种接受首选类型并返回对象原始值的表示的方法。它被所有的强类型转换制算法优先调用</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.toStringTag</td>
+<td align="center">内置通用（well-known）symbol 是一个字符串值属性，用于创建对象的默认字符串描述。它由 Object.prototype.toString() 方法内部访问</td>
+<td align="left">单元格</td>
+</tr>
+<tr>
+<td align="left">Symbol.unscopables</td>
+<td align="center">对象的Symbol.unscopables属性，指向一个对象。该对象指定了使用with关键字时，哪些属性会被with环境排除</td>
+<td align="left">单元格</td>
+</tr>
+</tbody></table>
+<p><font color="red">Symbol.for()</font>与<font color="red">Symbol()</font>这两种写法，都会生成新的 Symbol。<br>它们的<font color="red">区别</font>是:<br>前者会被登记在全局环境中供搜索，后者不会。Symbol.for()不会每次调用就返回一个新的 Symbol 类型的值，而是会先检查给定的key是否已经存在，如果不存在才会新建一个值。比如，如果你调用Symbol.for(“cat”)30 次，每次都会返回同一个 Symbol 值，但是调用Symbol(“cat”)30 次，会返回 30 个不同的 Symbol 值。</p>
+]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
@@ -322,6 +378,30 @@
 ]]></content>
   </entry>
   <entry>
+    <title>butterfly主题修改字体</title>
+    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
+    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
+<p>目录截图：<br><img src="/../images/directory.png"></p>
+<p>内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
+<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
+<p>其他格式字体的常见示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，font-family 字段是可以自己定义的哦</p>
+<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
+<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
+<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo博客运行命令</title>
     <url>/2023/07/09/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>运行  </p>
@@ -333,27 +413,6 @@ npx hexo s
 <p>运行下列命令启动hexo-admin ：<br><code>npx hexo server -d</code><br>打开 <a href="http://localhost:4000/admin/">http://localhost:4000/admin/</a> 就可以访问到hexo-admin管理页面了。</p>
 <p>自动部署自github上<br><code>npx hexo d</code></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>volta安装及使用</title>
-    <url>/2023/06/07/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
-<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
-<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
-<ul>
-<li>volta</li>
-<li>volta-migrate</li>
-<li>volta-shim</li>
-</ul>
-<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
-<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
-<p>大功告成</p>
-]]></content>
-      <tags>
-        <tag>web前端</tag>
-      </tags>
   </entry>
   <entry>
     <title>butterfly添加本地搜索</title>
@@ -593,6 +652,27 @@ npx hexo s
 </code></pre>
 <p>具体配置参考官方说明：<a href="https://github.com/wzpan/hexo-generator-search">https://github.com/wzpan/hexo-generator-search</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>volta安装及使用</title>
+    <url>/2023/06/07/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
+<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
+<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
+<ul>
+<li>volta</li>
+<li>volta-migrate</li>
+<li>volta-shim</li>
+</ul>
+<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
+<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
+<p>大功告成</p>
+]]></content>
+      <tags>
+        <tag>web前端</tag>
+      </tags>
   </entry>
   <entry>
     <title>vue-router导航守卫</title>
