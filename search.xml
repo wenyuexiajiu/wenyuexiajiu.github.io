@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>butterfly主题修改字体</title>
+    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
+    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
+<p>目录截图：<br><img src="/../images/directory.png"></p>
+<p>内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
+<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
+<p>其他格式字体的常见示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，font-family 字段是可以自己定义的哦</p>
+<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
+<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
+<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ES6学习</title>
     <url>/2023/07/11/ES6%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="rest参数与扩展运算符区别"><a href="#rest参数与扩展运算符区别" class="headerlink" title="rest参数与扩展运算符区别"></a>rest参数与扩展运算符区别</h1><h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>rest 参数叫做不定（剩余）参数，写法就是 … 返回数组结构。<font color="red">这个 … 必须要加到最后一项。只能在结构中的最后。</font></p>
@@ -390,6 +414,55 @@
 <p>上面示例中，this.x和C.x都能获取静态属性x。<br>静态块还可以将私有属性与类的外部代码分享</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> getX;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">C</span> &#123;</span><br><span class="line">  #x = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">static</span> &#123;</span><br><span class="line">    getX = <span class="function"><span class="params">obj</span> =&gt;</span> obj.#x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">getX</span>(<span class="keyword">new</span> <span class="title function_">C</span>())); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 <p>上面示例中，#x是类的私有属性，如果类外部的getX()方法希望获取这个属性，以前是要写在类的constructor()方法里面，这样的话，每次新建实例都会定义一次getX()方法。现在可以写在静态块里面，这样的话，只在类生成时定义一次</p>
+<h2 id="new-target-属性"><a href="#new-target-属性" class="headerlink" title="new.target 属性"></a>new.target 属性</h2><p>作用：指向当前正在执行的函数</p>
+<h1 id="Class的继承"><a href="#Class的继承" class="headerlink" title="Class的继承"></a>Class的继承</h1><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p><font color="red">1. 父类所有的属性和方法（静态属性和静态方法），都会被子类继承，除了私有的属性和方法</font><br><font color="red">2. ES6规定，子类必须在constructor()方法中调用super()，否则就会报错</font><br><strong>原因：</strong><br>因为子类自己的this对象，必须先通过父类的构造函数完成塑造，得到与父类同样的实例属性和方法，然后再对其进行加工，添加子类自己的实例属性和方法。如果不调用super()方法，子类就得不到自己的this对象<br><strong>与ES5的区别</strong>：<br><font color="red">ES5</font> 的继承机制，是先创造一个独立的子类的实例对象，然后再将父类的方法添加到这个对象上面，<font color="red">即“实例在前，继承在后”</font>。<font color="red">ES6</font> 的继承机制，则是先将父类的属性和方法，加到一个空的对象上面，然后再将该对象作为子类的实例，<font color="red">即“继承在前，实例在后”</font>。这就是为什么 ES6 的继承必须先调用super()方法，因为这一步会生成一个继承父类的this对象，没有这一步就无法继承父类<br><strong>注意，这意味着新建子类实例时，父类的构造函数必定会先运行一次</strong></p>
+<p><font color="red">3. 在子类的构造函数中，只有调用super()之后，才可以使用this关键字，否则会报错。这是因为子类实例的构建，必须先完成父类的继承，只有super()方法才能让子类实例继承父类</font></p>
+<h2 id="私有属性和私有方法"><a href="#私有属性和私有方法" class="headerlink" title="私有属性和私有方法"></a>私有属性和私有方法</h2><p>父类所有的属性和方法，都会被子类继承，除了私有的属性和方法。<br>如果父类定义了私有属性的读写方法，子类就可以通过这些方法，读写私有属性</p>
+<h2 id="静态属性和静态方法的继承"><a href="#静态属性和静态方法的继承" class="headerlink" title="静态属性和静态方法的继承"></a>静态属性和静态方法的继承</h2><p>父类的静态属性和静态方法，也会被子类继承<br>注意，静态属性是通过软拷贝实现继承的。即修改子类中与父类中相同属性，父类中属性值不变。这两个是彼此独立的属性。例：父类中static foo&#x3D;100；在子类中B.foo–；打印结果：B.foo &#x2F;&#x2F; 99  A.foo &#x2F;&#x2F; 100<br>但是，由于这种拷贝是浅拷贝，如果父类的静态属性的值是一个对象，那么子类的静态属性也会指向这个对象，因为浅拷贝只会拷贝对象的内存地址</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> foo = &#123; <span class="attr">n</span>: <span class="number">100</span> &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_ inherited__">A</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>();</span><br><span class="line">    B.<span class="property">foo</span>.<span class="property">n</span>--;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> b = <span class="keyword">new</span> <span class="title function_">B</span>();</span><br><span class="line">B.<span class="property">foo</span>.<span class="property">n</span> <span class="comment">// 99</span></span><br><span class="line">A.<span class="property">foo</span>.<span class="property">n</span> <span class="comment">// 99</span></span><br></pre></td></tr></table></figure>
+<p>A.foo的值是一个对象，浅拷贝导致B.foo和A.foo指向同一个对象。所以，子类B修改这个对象的属性值，会影响到父类A</p>
+<h2 id="Object-getPrototypeOf"><a href="#Object-getPrototypeOf" class="headerlink" title="Object.getPrototypeOf()"></a>Object.getPrototypeOf()</h2><p>作用：从子类上获取父类</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Point</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ColorPoint</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Point</span> &#123; <span class="comment">/*...*/</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">getPrototypeOf</span>(<span class="title class_">ColorPoint</span>) === <span class="title class_">Point</span></span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>因此，可以使用这个方法判断，一个类是否继承了另一个类</p>
+<h2 id="super-关键字"><a href="#super-关键字" class="headerlink" title="super 关键字"></a>super 关键字</h2><p>super这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。 </p>
+<p>第一种情况，super作为函数调用时，代表父类的构造函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_ inherited__">A</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过，由于super()在子类构造方法中执行时，子类的属性和方法还没有绑定到this，所以如果存在同名属性，此时拿到的是父类的属性。<br>作为函数时，super()只能用在子类的构造函数之中，用在其他地方就会报错  </p>
+<p>第二种情况，super作为对象时，在普通方法中，指向父类的原型对象；在静态方法中，指向父类。<br>这里需要注意，由于super指向父类的原型对象，所以定义在父类实例上的方法或属性，是无法通过super调用的。<br>如果属性定义在父类的原型对象上，super就可以取到。<br>另外，在子类的静态方法中通过super调用父类的方法时，方法内部的this指向当前的子类，而不是子类的实例。<br>注意，使用super的时候，必须显式指定是作为函数、还是作为对象使用，否则会报错。</p>
+<h2 id="类的-prototype-属性和-proto-属性"><a href="#类的-prototype-属性和-proto-属性" class="headerlink" title="类的 prototype 属性和__proto__属性"></a>类的 prototype 属性和__proto__属性</h2><p>（1）子类的__proto__属性，表示构造函数的继承，总是指向父类。</p>
+<p>（2）子类prototype属性的__proto__属性，表示方法的继承，总是指向父类的prototype属性。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">B</span> <span class="keyword">extends</span> <span class="title class_ inherited__">A</span> &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">B.<span class="property">__proto__</span> === A <span class="comment">// true</span></span><br><span class="line">B.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">__proto__</span> === A.<span class="property"><span class="keyword">prototype</span></span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="原生构造函数的继承"><a href="#原生构造函数的继承" class="headerlink" title="原生构造函数的继承"></a>原生构造函数的继承</h2><p>ECMAScript 的原生构造函数大致有下面这些。</p>
+<ul>
+<li>Boolean()</li>
+<li>Number()</li>
+<li>String()</li>
+<li>Array()</li>
+<li>Date()</li>
+<li>Function()</li>
+<li>RegExp()</li>
+<li>Error()</li>
+<li>Object()</li>
+</ul>
+<h2 id="export-命令"><a href="#export-命令" class="headerlink" title="export 命令"></a>export 命令</h2><p>目前，export 命令能够对外输出的就是三种接口：函数（Functions）， 类（Classes），var、let、const 声明的变量（Variables）。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2023/07/07/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -632,24 +705,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2023/07/07/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>hexo博客运行命令</title>
     <url>/2023/07/09/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>运行  </p>
@@ -663,28 +718,12 @@ npx hexo s
 ]]></content>
   </entry>
   <entry>
-    <title>butterfly主题修改字体</title>
-    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
-    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
-<p>目录截图：<br><img src="/../images/directory.png"></p>
-<p>内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+    <title>markdown添加代码段</title>
+    <url>/2023/07/14/markdown%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81%E6%AE%B5/</url>
+    <content><![CDATA[<h2 id="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"><a href="#格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行" class="headerlink" title="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"></a>格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行</h2><p>例如：<br><img src="/images/ES6/markdown%E4%BB%A3%E7%A0%81%E6%AE%B5%E5%86%99%E6%B3%95.png" alt="代码段示例"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 常用语言及关键字</span><br><span class="line">语言	            关键字</span><br><span class="line">C	            cpp , c</span><br><span class="line">Java	            java</span><br><span class="line">Python	            py , python</span><br><span class="line">PHP	            php</span><br><span class="line">Shell	            bash , shell</span><br><span class="line">C#	            c# , c-sharp , csharp</span><br><span class="line">CSS	            css</span><br><span class="line">JavaScript	    js , jscript , javascript</span><br><span class="line">text	            text , plain</span><br><span class="line">XML	            xml , xhtml , xslt , html</span><br><span class="line">R	            r , s , splus</span><br><span class="line">GO	            go , golang</span><br><span class="line">AppleScript	    applescript</span><br><span class="line">ActionScript <span class="number">3.0</span>    actionscript3 , as3</span><br><span class="line">ColdFusion	    coldfusion , cf</span><br><span class="line">Delphi	            delphi , pascal , pas</span><br><span class="line">diff&amp;patch	    diff patch</span><br><span class="line">Erlang	            erl , erlang</span><br><span class="line">Groovy	            groovy</span><br><span class="line">JavaFX	            jfx , javafx</span><br><span class="line">Perl	            perl , pl , Perl</span><br><span class="line">Ruby	            ruby , rails , ror , rb</span><br><span class="line">SASS&amp;SCSS	    sass , scss</span><br><span class="line">Scala	            scala</span><br><span class="line">SQL	            sql</span><br><span class="line">Visual Basic	    vb , vbnet</span><br><span class="line">Objective C	    objc , obj-c</span><br><span class="line">F#	            f# f-sharp , fsharp</span><br><span class="line">matlab	            matlab</span><br><span class="line">swift	            swift</span><br></pre></td></tr></table></figure>
 
-<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
-<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
-<p>其他格式字体的常见示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，font-family 字段是可以自己定义的哦</p>
-<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
-<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
-<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
 ]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
   </entry>
   <entry>
     <title>volta安装及使用</title>
@@ -816,13 +855,5 @@ npx hexo s
       <tags>
         <tag>vue</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>markdown添加代码段</title>
-    <url>/2023/07/14/markdown%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81%E6%AE%B5/</url>
-    <content><![CDATA[<h2 id="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"><a href="#格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行" class="headerlink" title="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"></a>格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行</h2><p>例如：<br><img src="/images/ES6/markdown%E4%BB%A3%E7%A0%81%E6%AE%B5%E5%86%99%E6%B3%95.png" alt="代码段示例"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 常用语言及关键字</span><br><span class="line">语言	            关键字</span><br><span class="line">C	            cpp , c</span><br><span class="line">Java	            java</span><br><span class="line">Python	            py , python</span><br><span class="line">PHP	            php</span><br><span class="line">Shell	            bash , shell</span><br><span class="line">C#	            c# , c-sharp , csharp</span><br><span class="line">CSS	            css</span><br><span class="line">JavaScript	    js , jscript , javascript</span><br><span class="line">text	            text , plain</span><br><span class="line">XML	            xml , xhtml , xslt , html</span><br><span class="line">R	            r , s , splus</span><br><span class="line">GO	            go , golang</span><br><span class="line">AppleScript	    applescript</span><br><span class="line">ActionScript <span class="number">3.0</span>    actionscript3 , as3</span><br><span class="line">ColdFusion	    coldfusion , cf</span><br><span class="line">Delphi	            delphi , pascal , pas</span><br><span class="line">diff&amp;patch	    diff patch</span><br><span class="line">Erlang	            erl , erlang</span><br><span class="line">Groovy	            groovy</span><br><span class="line">JavaFX	            jfx , javafx</span><br><span class="line">Perl	            perl , pl , Perl</span><br><span class="line">Ruby	            ruby , rails , ror , rb</span><br><span class="line">SASS&amp;SCSS	    sass , scss</span><br><span class="line">Scala	            scala</span><br><span class="line">SQL	            sql</span><br><span class="line">Visual Basic	    vb , vbnet</span><br><span class="line">Objective C	    objc , obj-c</span><br><span class="line">F#	            f# f-sharp , fsharp</span><br><span class="line">matlab	            matlab</span><br><span class="line">swift	            swift</span><br></pre></td></tr></table></figure>
-
-]]></content>
   </entry>
 </search>
