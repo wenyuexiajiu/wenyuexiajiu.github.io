@@ -856,4 +856,29 @@ npx hexo s
         <tag>vue</tag>
       </tags>
   </entry>
+  <entry>
+    <title>volta管理node版本</title>
+    <url>/2023/07/18/volta%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC/</url>
+    <content><![CDATA[<h2 id="为啥使用volta或nvm来管理node版本呢？"><a href="#为啥使用volta或nvm来管理node版本呢？" class="headerlink" title="为啥使用volta或nvm来管理node版本呢？"></a>为啥使用volta或nvm来管理node版本呢？</h2><h3 id="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案"><a href="#假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案" class="headerlink" title="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:"></a>假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:</h3><ol>
+<li>本地下载多个node包，一定是zip格式的才可以，但是环境变量中的node名称不变，所以每次，只需要将node本地的包名修改即可。举例：</li>
+</ol>
+<p><strong>环境变量path：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br></pre></td></tr></table></figure>
+<p><strong>本地node包：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br><span class="line">c:x\node-16</span><br><span class="line">c:x\node-18</span><br></pre></td></tr></table></figure>
+<p>那么当前我想使用18怎么办？只需要将node18本地包名称改为node14即可，所以根本原则就是只需要把你的目标版本名称，改为path中对应的node版本及名称即可。</p>
+<ol start="2">
+<li>使用votal<br>nvm我都不直接推荐各位了，理由就是我更喜欢valta，至于它和nvm的异同，大家感兴趣自行查阅。因为我用的是windows，所以就讲如何在windows下安装以及使用了。</li>
+</ol>
+<ul>
+<li>安装volta（卸载nvm的前提下）</li>
+<li>在项目根目录【package.json所在目录】下：</li>
+</ul>
+<h2 id="用volta安装node。"><a href="#用volta安装node。" class="headerlink" title="用volta安装node。"></a>用volta安装node。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta install xxx</span><br></pre></td></tr></table></figure>
+<h2 id="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"><a href="#用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。" class="headerlink" title="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"></a>用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta list</span><br></pre></td></tr></table></figure>
+<h2 id="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："><a href="#用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：" class="headerlink" title="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："></a>用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta pin node@16.20.1</span><br><span class="line">volta pin yarn@4.0.0-rc.46</span><br></pre></td></tr></table></figure>
+<h2 id="若成功，则package-json中有此类标识："><a href="#若成功，则package-json中有此类标识：" class="headerlink" title="若成功，则package.json中有此类标识："></a>若成功，则package.json中有此类标识：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;volta&quot;: &#123;</span><br><span class="line">  &quot;node&quot;: &quot;16.20.1&quot;,</span><br><span class="line">  &quot;yarn&quot;: &quot;4.0.0-rc.46&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行项目。注意执行项目和volta无任何关系。依然以package.json中定义的指令为准。</p>
+]]></content>
+  </entry>
 </search>
