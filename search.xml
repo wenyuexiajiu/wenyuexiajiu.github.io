@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>butterfly主题修改字体</title>
-    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
-    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
-<p>目录截图：<br><img src="/../images/directory.png"></p>
-<p>内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
-<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
-<p>其他格式字体的常见示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，font-family 字段是可以自己定义的哦</p>
-<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
-<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
-<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
-]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ES6学习</title>
     <url>/2023/07/11/ES6%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="rest参数与扩展运算符区别"><a href="#rest参数与扩展运算符区别" class="headerlink" title="rest参数与扩展运算符区别"></a>rest参数与扩展运算符区别</h1><h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>rest 参数叫做不定（剩余）参数，写法就是 … 返回数组结构。<font color="red">这个 … 必须要加到最后一项。只能在结构中的最后。</font></p>
@@ -448,6 +424,38 @@
 ]]></content>
   </entry>
   <entry>
+    <title>markdown添加代码段</title>
+    <url>/2023/07/14/markdown%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81%E6%AE%B5/</url>
+    <content><![CDATA[<h2 id="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"><a href="#格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行" class="headerlink" title="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"></a>格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行</h2><p>例如：<br><img src="/images/ES6/markdown%E4%BB%A3%E7%A0%81%E6%AE%B5%E5%86%99%E6%B3%95.png" alt="代码段示例"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 常用语言及关键字</span><br><span class="line">语言	            关键字</span><br><span class="line">C	            cpp , c</span><br><span class="line">Java	            java</span><br><span class="line">Python	            py , python</span><br><span class="line">PHP	            php</span><br><span class="line">Shell	            bash , shell</span><br><span class="line">C#	            c# , c-sharp , csharp</span><br><span class="line">CSS	            css</span><br><span class="line">JavaScript	    js , jscript , javascript</span><br><span class="line">text	            text , plain</span><br><span class="line">XML	            xml , xhtml , xslt , html</span><br><span class="line">R	            r , s , splus</span><br><span class="line">GO	            go , golang</span><br><span class="line">AppleScript	    applescript</span><br><span class="line">ActionScript <span class="number">3.0</span>    actionscript3 , as3</span><br><span class="line">ColdFusion	    coldfusion , cf</span><br><span class="line">Delphi	            delphi , pascal , pas</span><br><span class="line">diff&amp;patch	    diff patch</span><br><span class="line">Erlang	            erl , erlang</span><br><span class="line">Groovy	            groovy</span><br><span class="line">JavaFX	            jfx , javafx</span><br><span class="line">Perl	            perl , pl , Perl</span><br><span class="line">Ruby	            ruby , rails , ror , rb</span><br><span class="line">SASS&amp;SCSS	    sass , scss</span><br><span class="line">Scala	            scala</span><br><span class="line">SQL	            sql</span><br><span class="line">Visual Basic	    vb , vbnet</span><br><span class="line">Objective C	    objc , obj-c</span><br><span class="line">F#	            f# f-sharp , fsharp</span><br><span class="line">matlab	            matlab</span><br><span class="line">swift	            swift</span><br></pre></td></tr></table></figure>
+
+]]></content>
+  </entry>
+  <entry>
+    <title>butterfly主题修改字体</title>
+    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
+    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
+<p>目录截图：<br><img src="/../images/directory.png"></p>
+<p>内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
+<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
+<p>其他格式字体的常见示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，font-family 字段是可以自己定义的哦</p>
+<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
+<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
+<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo博客运行命令</title>
     <url>/2023/07/09/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -464,14 +472,6 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>markdown添加代码段</title>
-    <url>/2023/07/14/markdown%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81%E6%AE%B5/</url>
-    <content><![CDATA[<h2 id="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"><a href="#格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行" class="headerlink" title="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"></a>格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行</h2><p>例如：<br><img src="/images/ES6/markdown%E4%BB%A3%E7%A0%81%E6%AE%B5%E5%86%99%E6%B3%95.png" alt="代码段示例"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 常用语言及关键字</span><br><span class="line">语言	            关键字</span><br><span class="line">C	            cpp , c</span><br><span class="line">Java	            java</span><br><span class="line">Python	            py , python</span><br><span class="line">PHP	            php</span><br><span class="line">Shell	            bash , shell</span><br><span class="line">C#	            c# , c-sharp , csharp</span><br><span class="line">CSS	            css</span><br><span class="line">JavaScript	    js , jscript , javascript</span><br><span class="line">text	            text , plain</span><br><span class="line">XML	            xml , xhtml , xslt , html</span><br><span class="line">R	            r , s , splus</span><br><span class="line">GO	            go , golang</span><br><span class="line">AppleScript	    applescript</span><br><span class="line">ActionScript <span class="number">3.0</span>    actionscript3 , as3</span><br><span class="line">ColdFusion	    coldfusion , cf</span><br><span class="line">Delphi	            delphi , pascal , pas</span><br><span class="line">diff&amp;patch	    diff patch</span><br><span class="line">Erlang	            erl , erlang</span><br><span class="line">Groovy	            groovy</span><br><span class="line">JavaFX	            jfx , javafx</span><br><span class="line">Perl	            perl , pl , Perl</span><br><span class="line">Ruby	            ruby , rails , ror , rb</span><br><span class="line">SASS&amp;SCSS	    sass , scss</span><br><span class="line">Scala	            scala</span><br><span class="line">SQL	            sql</span><br><span class="line">Visual Basic	    vb , vbnet</span><br><span class="line">Objective C	    objc , obj-c</span><br><span class="line">F#	            f# f-sharp , fsharp</span><br><span class="line">matlab	            matlab</span><br><span class="line">swift	            swift</span><br></pre></td></tr></table></figure>
-
 ]]></content>
   </entry>
   <entry>
@@ -867,6 +867,166 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const originalPush = VueRouter.prototype.push</span><br><span class="line">VueRouter.prototype.push = function push(location) &#123;</span><br><span class="line">  return originalPush.call(this, location).catch(err =&gt; &#123;</span><br><span class="line">    //throw(err) // 抛出错误,控制台会显示错误信息, 如果不抛出,控制台不会报错</span><br><span class="line">    return err;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【微信小程序】组件的生命周期及自定义组件</title>
+    <url>/2023/08/02/%E3%80%90%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E3%80%91%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h1><p>组件的生命周期，指的是<strong>组件自身</strong>的一些函数，这些函数在特殊的时间点或遇到一些特殊的框架事件时被自动触发。<br>其中，最重要的生命周期是 created、attached、 detached ，包含一个组件实例生命流程的最主要时间点。</p>
+<h2 id="自定义组件的生命周期函数"><a href="#自定义组件的生命周期函数" class="headerlink" title="自定义组件的生命周期函数"></a>自定义组件的生命周期函数</h2><p>小程序组件可用的全部生命周期如下表所示:  </p>
+<table>
+<thead>
+<tr>
+<th align="center">生命周期函数</th>
+<th align="center">参数</th>
+<th align="center">描述说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">created</td>
+<td align="center">无</td>
+<td align="center">在组件实例刚刚被创建时执行</td>
+</tr>
+<tr>
+<td align="center">attached</td>
+<td align="center">无</td>
+<td align="center">在组件实例进入页面节点树时执行</td>
+</tr>
+<tr>
+<td align="center">ready</td>
+<td align="center">无</td>
+<td align="center">在组件在视图层布局完成后执行</td>
+</tr>
+<tr>
+<td align="center">moved</td>
+<td align="center">无</td>
+<td align="center">在组件实例被移动到节点树另一个位置时执行</td>
+</tr>
+<tr>
+<td align="center">detached</td>
+<td align="center">无</td>
+<td align="center">在组件实例被从页面节点树移除时执行</td>
+</tr>
+<tr>
+<td align="center">error</td>
+<td align="center">Object Error</td>
+<td align="center">每当组件方法抛出错误时执行</td>
+</tr>
+</tbody></table>
+<h3 id="执行顺序"><a href="#执行顺序" class="headerlink" title="执行顺序"></a>执行顺序</h3><p><img src="/%5Cimages%5C%E5%B0%8F%E7%A8%8B%E5%BA%8F%5C%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F.png"><br>从该图中可以看出组件的 ready 与 detached 执行顺序并没有明确的先后关系。</p>
+<h3 id="组件常用的生命周期函数"><a href="#组件常用的生命周期函数" class="headerlink" title="组件常用的生命周期函数"></a>组件常用的生命周期函数</h3><p>在小程序组件中，最重要的生命周期函数有3个，分别是<font color="red">created、attached、detached</font>。它们各自的特点。如下︰</p>
+<ul>
+<li>组件实例刚被创建好的时候，<font color="red">created</font>生命周期函数会被触发<br>此时还不能调用setData，通常在这个生命周期函数中，只应该用于给组件的this添加一些自定义的属性字段在组件</li>
+<li>完全初始化完毕、进入页面节点树后，<font color="red">attached</font>生命周期函数会被触发<br>此时, this.data已被初始化完毕。这个生命周期很有用，绝大多数初始化的工作可以在这个时机进行（例如发请求获取初始数据)</li>
+<li>在组件离开页面节点树后，<font color="red">detached</font>生命周期函数会被触发<br>退出一个页面时，会触发页面内每个自定义组件的detached生命周期函数此时适合做一些清理性质的工作</li>
+</ul>
+<h3 id="lifetimes节点"><a href="#lifetimes节点" class="headerlink" title="lifetimes节点"></a>lifetimes节点</h3><p>在小程序组件中，生命周期函数可以直接定义在<strong>Component构造器</strong>的第一级参数中，可以在 lifetimes字段内进行声明（这是推荐的方式，其优先级最高）。如下:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Component</span>(&#123;</span><br><span class="line">	<span class="attr">lifetimes</span>:&#123;</span><br><span class="line">	   <span class="title function_">created</span>(<span class="params"></span>)&#123;</span><br><span class="line">	       <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;created&#x27;</span>);</span><br><span class="line">	   &#125;,</span><br><span class="line">	   <span class="title function_">attached</span>(<span class="params"></span>)&#123;</span><br><span class="line">	       <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;attached&#x27;</span>);</span><br><span class="line">	   &#125;</span><br><span class="line">	&#125;</span><br><span class="line">)&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：若不写在lifetime节点中且同时存在lifetime节点，优先执行lifetime节点中的生命周期函数，并覆盖掉节点之外的生命周期函数。</p>
+<h2 id="组件所在页面的生命周期函数"><a href="#组件所在页面的生命周期函数" class="headerlink" title="组件所在页面的生命周期函数"></a>组件所在页面的生命周期函数</h2><p>有时，自定义组件的行为依赖于页面状态的变化，此时就需要用到组件所在页面的生命周期。<br>在自定义组件中，组件所在页面的生命周期函数有如下3个，分别是:</p>
+<table>
+<thead>
+<tr>
+<th align="center">生命周期函数</th>
+<th align="center">参数</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">show</td>
+<td align="center">无</td>
+<td align="center">组件所在的页面被展示时执行</td>
+</tr>
+<tr>
+<td align="center">hide</td>
+<td align="center">无</td>
+<td align="center">组件所在的页面被隐藏时执行</td>
+</tr>
+<tr>
+<td align="center">resize</td>
+<td align="center">object Size</td>
+<td align="center">组件所在的页面尺寸变化时执行</td>
+</tr>
+</tbody></table>
+<h3 id="pageLifetimes节点"><a href="#pageLifetimes节点" class="headerlink" title="pageLifetimes节点"></a>pageLifetimes节点</h3><p>组件所在页面的生命周期函数，需要定义在<strong>pageLifetimes</strong>节点中，如下:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Component</span>(&#123;</span><br><span class="line">	<span class="attr">pageLifetimes</span>:&#123;</span><br><span class="line">      	<span class="title function_">show</span>(<span class="params"></span>)&#123;</span><br><span class="line">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;show!!&quot;</span>);</span><br><span class="line">       &#125;,</span><br><span class="line">       <span class="title function_">hide</span>(<span class="params"></span>)&#123;</span><br><span class="line">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hide!!&quot;</span>);</span><br><span class="line">       &#125;,</span><br><span class="line">       <span class="title function_">resize</span>(<span class="params"></span>)&#123;</span><br><span class="line">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;resize&quot;</span>);</span><br><span class="line">       &#125;						</span><br><span class="line">   &#125;				</span><br><span class="line">)&#125;</span><br></pre></td></tr></table></figure>
+<p>当页面显示和隐藏时触发<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%BB%84%E4%BB%B6%E6%89%80%E5%9C%A8%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png"></p>
+<h1 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a>自定义组件</h1><p>类似vue或者react中的自定义组件。<br>微信小程序也 允许我们使用自定义组件的方式来构建页面。</p>
+<p>当我们在开发小程序页面时，少不了哪些重复或类似的板块，需要我们复制粘贴一份源码进行编写，而组件恰恰解决了这个问题，它能让我们的代码复用率更高。开发更如鱼得水。</p>
+<h2 id="创建自定义组件"><a href="#创建自定义组件" class="headerlink" title="创建自定义组件"></a>创建自定义组件</h2><p>类似于页面，一个自定义组件由 <font color="red">.json .wxml .wxss .js</font> 4个文件组成。</p>
+<h3 id="创建组件"><a href="#创建组件" class="headerlink" title="创建组件"></a>创建组件</h3><p>可以在微信开发者工具中快速创建组件的文件结构。如图<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%88%9B%E5%BB%BA%E7%BB%84%E4%BB%B6.png"><br>创建好之后，便出现四个文件：如图<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%88%9B%E5%BB%BA%E7%BB%84%E4%BB%B6%E7%BB%93%E6%9E%9C%E7%9B%AE%E5%BD%95.png"></p>
+<h3 id="定义组件"><a href="#定义组件" class="headerlink" title="定义组件"></a>定义组件</h3><p>此时我们新建一个页面-demo，在demo.json中可以使用刚才我们创建好的组件。<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6.png"></p>
+<h3 id="使用组件"><a href="#使用组件" class="headerlink" title="使用组件"></a>使用组件</h3><p>首先让效果更明显，我们在组件的wxml文件中写入一些东西：<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%BB%84%E4%BB%B6%E5%86%85%E5%AE%B9%E7%BC%96%E8%BE%91.png"><br>之后我们在页面demo.wxml中使用我们的组件：<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8.png"><br>出现如上效果则说明我们声明的组件已经被使用了</p>
+<h2 id="父组件向子组件传递数据"><a href="#父组件向子组件传递数据" class="headerlink" title="父组件向子组件传递数据"></a>父组件向子组件传递数据</h2><p>1.父组件(页面)向子组件传递数据通过标签属性的方式来传递<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%88%B6%E4%BC%A0%E5%AD%90%EF%BC%881%EF%BC%89.png"><br>2.在子组件的.js文件上进行接收<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%88%B6%E4%BC%A0%E5%AD%90%EF%BC%882%EF%BC%89.png"><br>注意：若父组件给子组件不传值时则使用value中定义的值。<br>3.在SuHeader.wxml中接收数据即可<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%88%B6%E4%BC%A0%E5%AD%90%EF%BC%883%EF%BC%89.png"></p>
+<h2 id="子组件向父组件传递数据"><a href="#子组件向父组件传递数据" class="headerlink" title="子组件向父组件传递数据"></a>子组件向父组件传递数据</h2><p>1.给地址绑定鼠标单击事件<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%AD%90%E4%BC%A0%E7%88%B6%EF%BC%881%EF%BC%89.png"><br>2.当单击事件被触发。给通过<font color="red">this.triggerEvent</font>绑定父组件的自定义事件并且给父组件传递数据<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%AD%90%E4%BC%A0%E7%88%B6%EF%BC%882%EF%BC%89.png"><br>3.父组件的自定义事件<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%AD%90%E4%BC%A0%E7%88%B6%EF%BC%883%EF%BC%89.png"><br>4.在demo.js文件中触发父组件的自定义事件，注意与data配置项平级<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%AD%90%E4%BC%A0%E7%88%B6%EF%BC%884%EF%BC%89.png"><br>5.触发单击响应事件<br><img src="/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%AD%90%E4%BC%A0%E7%88%B6%EF%BC%885%EF%BC%89.png"></p>
+<h2 id="其他定义段与示例方法"><a href="#其他定义段与示例方法" class="headerlink" title="其他定义段与示例方法"></a>其他定义段与示例方法</h2><table>
+<thead>
+<tr>
+<th align="center">定义段</th>
+<th align="center">类型</th>
+<th align="center">是否必填</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">properties</td>
+<td align="center">object Map</td>
+<td align="center">否</td>
+<td align="center">组件的对外属性，是属性名到属性设置的映射表</td>
+</tr>
+<tr>
+<td align="center">data</td>
+<td align="center">object</td>
+<td align="center">否</td>
+<td align="center">组件的内部数据，和 properties一同用于模板渲染</td>
+</tr>
+<tr>
+<td align="center">observers</td>
+<td align="center">object</td>
+<td align="center">否</td>
+<td align="center">组件数据字段监听器，用于监听 properties和data的变化</td>
+</tr>
+<tr>
+<td align="center">methods</td>
+<td align="center">object</td>
+<td align="center">否</td>
+<td align="center">组件的方法，包括事件响应函数和任意的自定义方法</td>
+</tr>
+<tr>
+<td align="center">created</td>
+<td align="center">function</td>
+<td align="center">否</td>
+<td align="center">组件生命周期函数，在组件实例刚刚被创建时执行，注意此时不能调用setDate</td>
+</tr>
+<tr>
+<td align="center">attached</td>
+<td align="center">function</td>
+<td align="center">否</td>
+<td align="center">组件生命周期函数，在组件实例进入页面节点树时执行</td>
+</tr>
+<tr>
+<td align="center">ready</td>
+<td align="center">Function</td>
+<td align="center">否</td>
+<td align="center">组件生命周期函数，在组件布局完成后执行</td>
+</tr>
+<tr>
+<td align="center">moved</td>
+<td align="center">Function</td>
+<td align="center">否</td>
+<td align="center">组件生命周期函数，在组件实例被移动到节点树另一个位置时执行</td>
+</tr>
+<tr>
+<td align="center">detached</td>
+<td align="center">Function</td>
+<td align="center">否</td>
+<td align="center">组件生命周期函数，在组件实例被从页面节点树移除时执行</td>
+</tr>
+</tbody></table>
+<p>详情可见官方文档：<a href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Component.html">Component(Object object)</a></p>
+]]></content>
+      <tags>
+        <tag>小程序</tag>
       </tags>
   </entry>
 </search>
