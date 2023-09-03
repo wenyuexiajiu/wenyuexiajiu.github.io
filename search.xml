@@ -475,52 +475,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>volta安装及使用</title>
-    <url>/2023/06/07/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
-<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
-<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
-<ul>
-<li>volta</li>
-<li>volta-migrate</li>
-<li>volta-shim</li>
-</ul>
-<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
-<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
-<p>大功告成</p>
-]]></content>
-      <tags>
-        <tag>web前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>volta管理node版本</title>
-    <url>/2023/07/18/volta%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC/</url>
-    <content><![CDATA[<h2 id="为啥使用volta或nvm来管理node版本呢？"><a href="#为啥使用volta或nvm来管理node版本呢？" class="headerlink" title="为啥使用volta或nvm来管理node版本呢？"></a>为啥使用volta或nvm来管理node版本呢？</h2><h3 id="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案"><a href="#假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案" class="headerlink" title="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:"></a>假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:</h3><ol>
-<li>本地下载多个node包，一定是zip格式的才可以，但是环境变量中的node名称不变，所以每次，只需要将node本地的包名修改即可。举例：</li>
-</ol>
-<p><strong>环境变量path：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br></pre></td></tr></table></figure>
-<p><strong>本地node包：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br><span class="line">c:x\node-16</span><br><span class="line">c:x\node-18</span><br></pre></td></tr></table></figure>
-<p>那么当前我想使用18怎么办？只需要将node18本地包名称改为node14即可，所以根本原则就是只需要把你的目标版本名称，改为path中对应的node版本及名称即可。</p>
-<ol start="2">
-<li>使用votal<br>nvm我都不直接推荐各位了，理由就是我更喜欢valta，至于它和nvm的异同，大家感兴趣自行查阅。因为我用的是windows，所以就讲如何在windows下安装以及使用了。</li>
-</ol>
-<ul>
-<li>安装volta（卸载nvm的前提下）</li>
-<li>在项目根目录【package.json所在目录】下：</li>
-</ul>
-<h2 id="用volta安装node。"><a href="#用volta安装node。" class="headerlink" title="用volta安装node。"></a>用volta安装node。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta install xxx</span><br></pre></td></tr></table></figure>
-<h2 id="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"><a href="#用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。" class="headerlink" title="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"></a>用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta list</span><br></pre></td></tr></table></figure>
-<h2 id="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："><a href="#用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：" class="headerlink" title="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："></a>用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta pin node@16.20.1</span><br><span class="line">volta pin yarn@4.0.0-rc.46</span><br></pre></td></tr></table></figure>
-<h2 id="若成功，则package-json中有此类标识："><a href="#若成功，则package-json中有此类标识：" class="headerlink" title="若成功，则package.json中有此类标识："></a>若成功，则package.json中有此类标识：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;volta&quot;: &#123;</span><br><span class="line">  &quot;node&quot;: &quot;16.20.1&quot;,</span><br><span class="line">  &quot;yarn&quot;: &quot;4.0.0-rc.46&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行项目。注意执行项目和volta无任何关系。依然以package.json中定义的指令为准。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>butterfly添加本地搜索</title>
     <url>/2023/07/08/butterfly%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E6%90%9C%E7%B4%A2/</url>
     <content><![CDATA[<p>引入Local search 本地搜索<br>效果<br>安装hexo-generator-search<br><code>npm install hexo-generator-search --save</code><br>添加配置<br>在全局配置文件_config.yml文件中添加配置：  </p>
@@ -760,114 +714,29 @@
 ]]></content>
   </entry>
   <entry>
-    <title>vue-router导航守卫</title>
-    <url>/2023/07/09/vue-router%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%AB/</url>
-    <content><![CDATA[<h2 id="什么是导航守卫（路由守卫）"><a href="#什么是导航守卫（路由守卫）" class="headerlink" title="什么是导航守卫（路由守卫）"></a>什么是导航守卫（路由守卫）</h2><p>在vue-router的官方文档中, 将<font color=red>路由钩子</font>翻译为<font color=red>导航守卫（路由守卫）</font>, 它是在路由跳转过程中调用的函数, 通过路由守卫可获取路由信息和阻止路由跳转  </p>
-<p><font color=red>“导航”</font>表示路由正在发生变化  </p>
-<p><font color=red>注意：参数或查询的改变并不会触发进入&#x2F;离开的导航守卫</font>。你可以通过观察$router对象来应对这些变化，或使用beforeRouteUpdate的组件内守卫</p>
-<h2 id="有哪些路由守卫"><a href="#有哪些路由守卫" class="headerlink" title="有哪些路由守卫"></a>有哪些路由守卫</h2><p>路由守卫有以下三种：</p>
+    <title>volta管理node版本</title>
+    <url>/2023/07/18/volta%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC/</url>
+    <content><![CDATA[<h2 id="为啥使用volta或nvm来管理node版本呢？"><a href="#为啥使用volta或nvm来管理node版本呢？" class="headerlink" title="为啥使用volta或nvm来管理node版本呢？"></a>为啥使用volta或nvm来管理node版本呢？</h2><h3 id="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案"><a href="#假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案" class="headerlink" title="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:"></a>假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:</h3><ol>
+<li>本地下载多个node包，一定是zip格式的才可以，但是环境变量中的node名称不变，所以每次，只需要将node本地的包名修改即可。举例：</li>
+</ol>
+<p><strong>环境变量path：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br></pre></td></tr></table></figure>
+<p><strong>本地node包：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br><span class="line">c:x\node-16</span><br><span class="line">c:x\node-18</span><br></pre></td></tr></table></figure>
+<p>那么当前我想使用18怎么办？只需要将node18本地包名称改为node14即可，所以根本原则就是只需要把你的目标版本名称，改为path中对应的node版本及名称即可。</p>
+<ol start="2">
+<li>使用votal<br>nvm我都不直接推荐各位了，理由就是我更喜欢valta，至于它和nvm的异同，大家感兴趣自行查阅。因为我用的是windows，所以就讲如何在windows下安装以及使用了。</li>
+</ol>
 <ul>
-<li>全局钩子： <font color=red>beforeEach()(全局前置守卫)、beforeResolve(全局解析守卫)、 afterEach()(全局后置钩子)</font></li>
-<li>路由独享的守卫(单个路由里面的钩子)： <font color=red>beforeEnter()</font></li>
-<li>组件路由：<font color=red>beforeRouteEnter()、 beforeRouteUpdate()、 beforeRouteLeave()</font></li>
+<li>安装volta（卸载nvm的前提下）</li>
+<li>在项目根目录【package.json所在目录】下：</li>
 </ul>
-<h2 id="路由守卫有哪些参数，作用是什么？"><a href="#路由守卫有哪些参数，作用是什么？" class="headerlink" title="路由守卫有哪些参数，作用是什么？"></a>路由守卫有哪些参数，作用是什么？</h2><p>路由守卫的参数有三个: <font color=red>to, from , next</font></p>
-<ul>
-<li><font color=red>to:</font> 表示路由跳转的目标信息对象 (到哪儿去)</li>
-<li><font color=red>from:</font> 表示路由跳转的来源信息对象(从哪儿来)</li>
-<li><font color=red>next:</font> 回调函数, 表示是否允许路由跳转, 调用允许, 不调用则禁止<ul>
-<li><font color=red>next()：</font>进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是confirmed（确认的）。</li>
-<li><font color=red>next(false)：</font>中断当前的导航。如果浏览器的URL改变了（可能是用户手动或者浏览器后退按钮），那么URL地址会重置到from路由对应的地址。</li>
-<li><font color=red>next(‘&#x2F;‘)或者next({path:’&#x2F;‘})：</font>跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以想next传递任意位置对象，且允许设置诸如replace:true、name:’home’之类的选项以及任何用在router-link的to prop或router.push中的选项。</li>
-<li><font color=red>next(error)：</font>(2.40+)如果传入next的参数是一个Error实例，则导航会被终止且该错误会被传递给router.onError()注册过的回调。</li>
-</ul>
-</li>
-</ul>
-<h2 id="路由守卫（函数）详解"><a href="#路由守卫（函数）详解" class="headerlink" title="路由守卫（函数）详解"></a>路由守卫（函数）详解</h2><h3 id="全局导航守卫"><a href="#全局导航守卫" class="headerlink" title="全局导航守卫"></a>全局导航守卫</h3><p>由于在任何组件中都能使用this.$router，所以全局路由守卫可以在任意组件中调用（可以放在任意组件中，放main.js中也可以）</p>
-<table>
-<thead>
-<tr>
-<th align="left">守卫</th>
-<th align="center">函数</th>
-<th align="center">说明</th>
-<th>功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">全局前置守卫</td>
-<td align="center">beforeEach</td>
-<td align="center">在路由改变之前</td>
-<td>鉴权，登录状态核对，打点等相关操作</td>
-</tr>
-<tr>
-<td align="left">全局解析守卫</td>
-<td align="center">beforeResolve</td>
-<td align="center">在导航被确认之前 <br>1、所有的组件内守卫执行完毕；<br>2、异步路由组件已经解析完成</td>
-<td>beforeResolve方法可以确保路由组件及组件内回调被执行完成后再执行渲染；<br>可以避免在渲染页面之前异步组件还未加载完成的情况；<br>所以这个回调更多的是vue内部被回调</td>
-</tr>
-<tr>
-<td align="left">全局后置钩子</td>
-<td align="center">afterEach</td>
-<td align="center">在路由跳转完成后执行的回调<br>注意: 此时导航已经完成，无法通过这个回调来改变导航<br>所以它不是守卫函数，只是一个钩子函数</td>
-<td>比如页面滚动到指定位置、更新页面标题等</td>
-</tr>
-</tbody></table>
-<h4 id="beforeEach"><a href="#beforeEach" class="headerlink" title="beforeEach"></a>beforeEach</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 如果想限制所有路由的跳转，可以使用router对象调用全局路由守卫</span><br><span class="line">router.beforeEach(function(to, from, next)&#123;</span><br><span class="line">  // 任何一个路由跳转都会经过这个路由守卫</span><br><span class="line">  console.log(&quot;全局路由进入之前&quot;, to.fullPath, from.fullPath);</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 全局前置守卫</span><br><span class="line">router.beforeEach(async (to, from) =&gt; &#123;</span><br><span class="line">   if (</span><br><span class="line">     // 检查用户是否已登录</span><br><span class="line">     !token &amp;&amp;</span><br><span class="line">     // ❗️ 避免无限重定向</span><br><span class="line">     to.name !== &#x27;Login&#x27;</span><br><span class="line">   ) &#123;</span><br><span class="line">     // 将用户重定向到登录页面</span><br><span class="line">     return &#123; name: &#x27;Login&#x27; &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="afterEach"><a href="#afterEach" class="headerlink" title="afterEach"></a>afterEach</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 路由跳转之后的守卫，next不调用也无所谓</span><br><span class="line">router.afterEach(function(to, from, next)&#123;</span><br><span class="line">  // 任何一个路由跳转都会经过这个路由守卫</span><br><span class="line">  console.log(&quot;全局路由进入之后&quot;, to.fullPath, from.fullPath);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">router.afterEach((to, from, failure) =&gt; &#123;</span><br><span class="line">  // 第三个信息是导航失败时候的相关信息</span><br><span class="line">  // 如果路由导航成功 那么failure的值将会是undefined</span><br><span class="line">  if (!failure) sendToAnalytics(to.fullPath)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="路由独享守卫"><a href="#路由独享守卫" class="headerlink" title="路由独享守卫"></a>路由独享守卫</h3><p>beforeEnter是路由独享守卫，该守卫只有在进入路由时触发，不会在 params、query 或 hash 改变时触发<br>定义在路由文件index.js的路由对象中</p>
-<h4 id="beforeEnter"><a href="#beforeEnter" class="headerlink" title="beforeEnter"></a>beforeEnter</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &#x27;/&#x27;,</span><br><span class="line">    name: &#x27;Home&#x27;,</span><br><span class="line">    component: Home,</span><br><span class="line">    // 路由配置对象中可添加路由守卫函数，只监听单个路由</span><br><span class="line">    beforeEach: (to, from, next) =&gt; &#123;</span><br><span class="line">      console.log(&quot;单个路由守卫进入之前&quot;, to.fullPath, from.fullPath);</span><br><span class="line">      next()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#x27;/users/:id&#x27;,</span><br><span class="line">    component: UserDetails,</span><br><span class="line">    beforeEnter: (to, from) =&gt; &#123;</span><br><span class="line">      return false</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>也可以将一个函数数组传递给 beforeEnter 以方便在不同路由中复用守卫函数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 在本例中removeQueryParams被复用了两次</span><br><span class="line">const routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#x27;/users/:id&#x27;,</span><br><span class="line">    component: UserDetails,</span><br><span class="line">    beforeEnter: [removeQueryParams, removeHash],</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#x27;/about&#x27;,</span><br><span class="line">    component: UserDetails,</span><br><span class="line">    beforeEnter: [removeQueryParams],</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h3 id="组件内守卫"><a href="#组件内守卫" class="headerlink" title="组件内守卫"></a>组件内守卫</h3><p>组件内守卫指的是在路由组件内直接定义的导航守卫函数</p>
-<p>也就是说组件内守卫只能在路由组件中使用，在渲染到<router-view />的子组件中是不存在组件内守卫的  </p>
-<table>
-<thead>
-<tr>
-<th align="left">守卫</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">beforeRouteEnter</td>
-<td align="left">异步组件加载完毕，组件实例化之前不可以访问组件实例 this</td>
-</tr>
-<tr>
-<td align="left">beforeRouteUpdate</td>
-<td align="left">当前路由改变，但是该组件被复用时调用(路由路径来源和目标相同(当前页跳转当前页),但参数不同时调用)<br>如&#x2F;users&#x2F;1 和 &#x2F;users&#x2F;2之间之间进行跳转的时候可以访问组件实例 this <br>如搜索页, 当搜索关键字改变时, 在这里更新数据</td>
-</tr>
-<tr>
-<td align="left">beforeRouteLeave</td>
-<td align="left">离开该组件的时候可以访问组件实例 this</td>
-</tr>
-</tbody></table>
-<h4 id="beforeRouteEnter"><a href="#beforeRouteEnter" class="headerlink" title="beforeRouteEnter"></a>beforeRouteEnter</h4><p>beforeRouteEnter是唯一一个支持给 next 传递回调的守卫<br>next是一个函数，在next被回调的时候，会传入组件实例作为next方法的参数</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 路由守卫：判断路由能否跳转，可控制路由跳转（多做登录认证）</span><br><span class="line">// 在渲染该组件的对应路由被 confirm 前调用</span><br><span class="line">    beforeRouteEnter (to, from, next) &#123;</span><br><span class="line">      // 路由守卫有三个参数，to表示即将跳转的路由信息对象(到哪去，跳到当前页的路由对象)，from是路由跳转的来源信息对象（从哪来，从哪里调到此页面的路由对象），next函数，调用时允许路由进入</span><br><span class="line">      console.log(&quot;路由进入之前&quot;, to, from, next);</span><br><span class="line">      // 此时，to的路径必定是/about，如果from的路由路径也是about，会报错，此时需要禁止路由跳转，防止报错</span><br><span class="line">      // next(); // 是否允许被跳转</span><br><span class="line">      // 使用场景：这个路由守卫，常用于做登录认证，在这里判断用户是否已经登录，如果已经登录，调用next()允许进入，如果没有登录，不调用next()，禁止进入。主要针对些需要登录状态才能访问的页面，如：个人信息页</span><br><span class="line">      console.log(this);</span><br><span class="line">      // 路由进入之前，组件还未创建，打印this是undefined，this是不能调的，那么如何在这个路由守卫中获取组件对象this？</span><br><span class="line">      next((vm)=&gt;&#123;</span><br><span class="line">        // next()的参数是一个回调函数，当组件创建完成后调用，回调的函数就是组件对象this</span><br><span class="line">        console.log(vm);</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">beforeRouteEnter (to, from, next) &#123;</span><br><span class="line">  next(vm =&gt; &#123;</span><br><span class="line">    // vm对应的就是组件实例</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="beforeRouteUpdate"><a href="#beforeRouteUpdate" class="headerlink" title="beforeRouteUpdate"></a>beforeRouteUpdate</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 路由守卫：当路由路径来源和目标相同时（当前页跳转当前页），参数不同时，执行这个路由守卫，不会报错（如果参数相同，会直接报错，不会进入路由守卫）</span><br><span class="line">// 举例来说，对于一个带有动态参数的路径 /foo/:id，在/foo/1和/foo/2之间跳转的时候</span><br><span class="line">// 由于会渲染同样的Foo组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。</span><br><span class="line">// 可以访问组件实例 `this`</span><br><span class="line">    beforeRouteUpdate (to, from, next)&#123;</span><br><span class="line">      console.log(&quot;路由更新之前&quot;, to, from, this.$route); </span><br><span class="line">      // 此时这里的this.$route和from里的page一直是不变的是旧的信息，to对象里的数据才是最新值，所以用to.query.page拿到最新的数据</span><br><span class="line">      this.$axios.get(&quot;/douyu/api/room/list&quot;, &#123;</span><br><span class="line">        params: &#123; page: to.query.page &#125;</span><br><span class="line">      &#125;).then(res =&gt; &#123;</span><br><span class="line">        console.log(res.data.data.list);</span><br><span class="line">        this.list = res.data.data.list</span><br><span class="line">      &#125;)</span><br><span class="line">      next();</span><br><span class="line">      // 使用场景：这个路由守卫，常用于写搜索页，当搜索关键词更新时，组件并没有重置也没有显示隐藏，所以普通的生命周期钩子并不会触发，只能在这里更新数据</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
-<h4 id="beforeRouteLeave"><a href="#beforeRouteLeave" class="headerlink" title="beforeRouteLeave"></a>beforeRouteLeave</h4><p>离开守卫 通常用来预防用户在离开界面时没有保存修改</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 路由守卫：路由离开前，从当前页跳转到其它页之前调用</span><br><span class="line">// 可以访问组件实例 `this`</span><br><span class="line">    beforeRouteLeave (to, from, next) &#123;</span><br><span class="line">      console.log(&quot;路由离开之前&quot;, to.path, from.path, next);</span><br><span class="line">      next()</span><br><span class="line">      // 使用场景，比如我们网站中遇到的关不掉的广告页面</span><br><span class="line">      // 比如我们在这个函数中能够不掉用next函数，当前页面就不能跳转到其它页面了</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">beforeRouteLeave (to, from) &#123;</span><br><span class="line">  const answer = window.confirm(&#x27;是否确认离开&#x27;)</span><br><span class="line">  // 通过返回false，来取消离开操作</span><br><span class="line">  if (!answer) return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="完整的导航解析流程"><a href="#完整的导航解析流程" class="headerlink" title="完整的导航解析流程"></a>完整的导航解析流程</h2><h3>执行的顺序</h3>
-1. beforeEach 前置守卫<br>
-2. beforeEnter 独享守卫<br>  
-3. beforeRouteEnter 组件守卫<br>  
-4. beforeResolve 解析守卫<br>  
-5. afterEach 路由后置守卫<br> 
-  
-
-<p><img src="/images/%E5%AF%BC%E8%88%AA%E8%A7%A3%E6%9E%90%E6%B5%81%E7%A8%8B.png"></p>
-<h2 id="使用路由守卫需要注意哪些问题？"><a href="#使用路由守卫需要注意哪些问题？" class="headerlink" title="使用路由守卫需要注意哪些问题？"></a>使用路由守卫需要注意哪些问题？</h2><p>(1) 由于在任何组件中都能使用this.$router, 所以全局路由守卫可以在任意组件中调用</p>
-<p>(2) beforeRouteEnter路由进入之前,组件还未创建,打印this是undefined, 如果想用组件对象,可以在next()的回调中拿到组件对象 next( vm&#x3D;&gt;{ console.log(vm) })</p>
-<p>(3) this.$router 是&#x2F;src&#x2F;router&#x2F;index.js中创建的路由对象, 全局唯一, 用于编程式导航跳转和全局路由守卫<br>this.$route 是路由跳转的信息对象, 每一个路由对应一个$route对象, 用于路由传值和路由监听</p>
-<p>(4) 路由监听和路由守卫的区别:<br>路由监听: 在组件中watch字段中监听$route, 实现路由监听, 只能监听路由变化, 不能修改路由和限制路由跳转<br>路由守卫: 使用路由钩子函数实现守卫, 路由不止可以监听路由, 还能控制路由跳转</p>
-<p>(5) 当路由跳转时, 跳转的路径和参数与当前完全一致, 没有变化, 不会调用路由钩子函数, 会报错NavigationDuplicated: Avoided redundant navigation to current location: “&#x2F;about?page&#x3D;5”.<br>解决方案如下: 在&#x2F;src&#x2F;router&#x2F;index.js中添加如下代码: 原理是捕获push函数报错, 不抛出错误<br>这条解决方案可以参考：<a href="https://blog.csdn.net/weixin_48940933/article/details/117303240">https://blog.csdn.net/weixin_48940933/article/details/117303240</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const originalPush = VueRouter.prototype.push</span><br><span class="line">VueRouter.prototype.push = function push(location) &#123;</span><br><span class="line">  return originalPush.call(this, location).catch(err =&gt; &#123;</span><br><span class="line">    //throw(err) // 抛出错误,控制台会显示错误信息, 如果不抛出,控制台不会报错</span><br><span class="line">    return err;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>vue</tag>
-      </tags>
+<h2 id="用volta安装node。"><a href="#用volta安装node。" class="headerlink" title="用volta安装node。"></a>用volta安装node。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta install xxx</span><br></pre></td></tr></table></figure>
+<h2 id="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"><a href="#用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。" class="headerlink" title="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"></a>用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta list</span><br></pre></td></tr></table></figure>
+<h2 id="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："><a href="#用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：" class="headerlink" title="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："></a>用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta pin node@16.20.1</span><br><span class="line">volta pin yarn@4.0.0-rc.46</span><br></pre></td></tr></table></figure>
+<h2 id="若成功，则package-json中有此类标识："><a href="#若成功，则package-json中有此类标识：" class="headerlink" title="若成功，则package.json中有此类标识："></a>若成功，则package.json中有此类标识：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;volta&quot;: &#123;</span><br><span class="line">  &quot;node&quot;: &quot;16.20.1&quot;,</span><br><span class="line">  &quot;yarn&quot;: &quot;4.0.0-rc.46&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行项目。注意执行项目和volta无任何关系。依然以package.json中定义的指令为准。</p>
+]]></content>
   </entry>
   <entry>
     <title>【微信小程序】组件的生命周期及自定义组件</title>
@@ -1027,6 +896,137 @@
 ]]></content>
       <tags>
         <tag>小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>volta安装及使用</title>
+    <url>/2023/06/07/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
+<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
+<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
+<ul>
+<li>volta</li>
+<li>volta-migrate</li>
+<li>volta-shim</li>
+</ul>
+<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
+<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
+<p>大功告成</p>
+]]></content>
+      <tags>
+        <tag>web前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue-router导航守卫</title>
+    <url>/2023/07/09/vue-router%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%AB/</url>
+    <content><![CDATA[<h2 id="什么是导航守卫（路由守卫）"><a href="#什么是导航守卫（路由守卫）" class="headerlink" title="什么是导航守卫（路由守卫）"></a>什么是导航守卫（路由守卫）</h2><p>在vue-router的官方文档中, 将<font color=red>路由钩子</font>翻译为<font color=red>导航守卫（路由守卫）</font>, 它是在路由跳转过程中调用的函数, 通过路由守卫可获取路由信息和阻止路由跳转  </p>
+<p><font color=red>“导航”</font>表示路由正在发生变化  </p>
+<p><font color=red>注意：参数或查询的改变并不会触发进入&#x2F;离开的导航守卫</font>。你可以通过观察$router对象来应对这些变化，或使用beforeRouteUpdate的组件内守卫</p>
+<h2 id="有哪些路由守卫"><a href="#有哪些路由守卫" class="headerlink" title="有哪些路由守卫"></a>有哪些路由守卫</h2><p>路由守卫有以下三种：</p>
+<ul>
+<li>全局钩子： <font color=red>beforeEach()(全局前置守卫)、beforeResolve(全局解析守卫)、 afterEach()(全局后置钩子)</font></li>
+<li>路由独享的守卫(单个路由里面的钩子)： <font color=red>beforeEnter()</font></li>
+<li>组件路由：<font color=red>beforeRouteEnter()、 beforeRouteUpdate()、 beforeRouteLeave()</font></li>
+</ul>
+<h2 id="路由守卫有哪些参数，作用是什么？"><a href="#路由守卫有哪些参数，作用是什么？" class="headerlink" title="路由守卫有哪些参数，作用是什么？"></a>路由守卫有哪些参数，作用是什么？</h2><p>路由守卫的参数有三个: <font color=red>to, from , next</font></p>
+<ul>
+<li><font color=red>to:</font> 表示路由跳转的目标信息对象 (到哪儿去)</li>
+<li><font color=red>from:</font> 表示路由跳转的来源信息对象(从哪儿来)</li>
+<li><font color=red>next:</font> 回调函数, 表示是否允许路由跳转, 调用允许, 不调用则禁止<ul>
+<li><font color=red>next()：</font>进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是confirmed（确认的）。</li>
+<li><font color=red>next(false)：</font>中断当前的导航。如果浏览器的URL改变了（可能是用户手动或者浏览器后退按钮），那么URL地址会重置到from路由对应的地址。</li>
+<li><font color=red>next(‘&#x2F;‘)或者next({path:’&#x2F;‘})：</font>跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。你可以想next传递任意位置对象，且允许设置诸如replace:true、name:’home’之类的选项以及任何用在router-link的to prop或router.push中的选项。</li>
+<li><font color=red>next(error)：</font>(2.40+)如果传入next的参数是一个Error实例，则导航会被终止且该错误会被传递给router.onError()注册过的回调。</li>
+</ul>
+</li>
+</ul>
+<h2 id="路由守卫（函数）详解"><a href="#路由守卫（函数）详解" class="headerlink" title="路由守卫（函数）详解"></a>路由守卫（函数）详解</h2><h3 id="全局导航守卫"><a href="#全局导航守卫" class="headerlink" title="全局导航守卫"></a>全局导航守卫</h3><p>由于在任何组件中都能使用this.$router，所以全局路由守卫可以在任意组件中调用（可以放在任意组件中，放main.js中也可以）</p>
+<table>
+<thead>
+<tr>
+<th align="left">守卫</th>
+<th align="center">函数</th>
+<th align="center">说明</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">全局前置守卫</td>
+<td align="center">beforeEach</td>
+<td align="center">在路由改变之前</td>
+<td>鉴权，登录状态核对，打点等相关操作</td>
+</tr>
+<tr>
+<td align="left">全局解析守卫</td>
+<td align="center">beforeResolve</td>
+<td align="center">在导航被确认之前 <br>1、所有的组件内守卫执行完毕；<br>2、异步路由组件已经解析完成</td>
+<td>beforeResolve方法可以确保路由组件及组件内回调被执行完成后再执行渲染；<br>可以避免在渲染页面之前异步组件还未加载完成的情况；<br>所以这个回调更多的是vue内部被回调</td>
+</tr>
+<tr>
+<td align="left">全局后置钩子</td>
+<td align="center">afterEach</td>
+<td align="center">在路由跳转完成后执行的回调<br>注意: 此时导航已经完成，无法通过这个回调来改变导航<br>所以它不是守卫函数，只是一个钩子函数</td>
+<td>比如页面滚动到指定位置、更新页面标题等</td>
+</tr>
+</tbody></table>
+<h4 id="beforeEach"><a href="#beforeEach" class="headerlink" title="beforeEach"></a>beforeEach</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 如果想限制所有路由的跳转，可以使用router对象调用全局路由守卫</span><br><span class="line">router.beforeEach(function(to, from, next)&#123;</span><br><span class="line">  // 任何一个路由跳转都会经过这个路由守卫</span><br><span class="line">  console.log(&quot;全局路由进入之前&quot;, to.fullPath, from.fullPath);</span><br><span class="line">  next()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 全局前置守卫</span><br><span class="line">router.beforeEach(async (to, from) =&gt; &#123;</span><br><span class="line">   if (</span><br><span class="line">     // 检查用户是否已登录</span><br><span class="line">     !token &amp;&amp;</span><br><span class="line">     // ❗️ 避免无限重定向</span><br><span class="line">     to.name !== &#x27;Login&#x27;</span><br><span class="line">   ) &#123;</span><br><span class="line">     // 将用户重定向到登录页面</span><br><span class="line">     return &#123; name: &#x27;Login&#x27; &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="afterEach"><a href="#afterEach" class="headerlink" title="afterEach"></a>afterEach</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 路由跳转之后的守卫，next不调用也无所谓</span><br><span class="line">router.afterEach(function(to, from, next)&#123;</span><br><span class="line">  // 任何一个路由跳转都会经过这个路由守卫</span><br><span class="line">  console.log(&quot;全局路由进入之后&quot;, to.fullPath, from.fullPath);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">router.afterEach((to, from, failure) =&gt; &#123;</span><br><span class="line">  // 第三个信息是导航失败时候的相关信息</span><br><span class="line">  // 如果路由导航成功 那么failure的值将会是undefined</span><br><span class="line">  if (!failure) sendToAnalytics(to.fullPath)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="路由独享守卫"><a href="#路由独享守卫" class="headerlink" title="路由独享守卫"></a>路由独享守卫</h3><p>beforeEnter是路由独享守卫，该守卫只有在进入路由时触发，不会在 params、query 或 hash 改变时触发<br>定义在路由文件index.js的路由对象中</p>
+<h4 id="beforeEnter"><a href="#beforeEnter" class="headerlink" title="beforeEnter"></a>beforeEnter</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &#x27;/&#x27;,</span><br><span class="line">    name: &#x27;Home&#x27;,</span><br><span class="line">    component: Home,</span><br><span class="line">    // 路由配置对象中可添加路由守卫函数，只监听单个路由</span><br><span class="line">    beforeEach: (to, from, next) =&gt; &#123;</span><br><span class="line">      console.log(&quot;单个路由守卫进入之前&quot;, to.fullPath, from.fullPath);</span><br><span class="line">      next()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#x27;/users/:id&#x27;,</span><br><span class="line">    component: UserDetails,</span><br><span class="line">    beforeEnter: (to, from) =&gt; &#123;</span><br><span class="line">      return false</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>也可以将一个函数数组传递给 beforeEnter 以方便在不同路由中复用守卫函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 在本例中removeQueryParams被复用了两次</span><br><span class="line">const routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#x27;/users/:id&#x27;,</span><br><span class="line">    component: UserDetails,</span><br><span class="line">    beforeEnter: [removeQueryParams, removeHash],</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: &#x27;/about&#x27;,</span><br><span class="line">    component: UserDetails,</span><br><span class="line">    beforeEnter: [removeQueryParams],</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h3 id="组件内守卫"><a href="#组件内守卫" class="headerlink" title="组件内守卫"></a>组件内守卫</h3><p>组件内守卫指的是在路由组件内直接定义的导航守卫函数</p>
+<p>也就是说组件内守卫只能在路由组件中使用，在渲染到<router-view />的子组件中是不存在组件内守卫的  </p>
+<table>
+<thead>
+<tr>
+<th align="left">守卫</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">beforeRouteEnter</td>
+<td align="left">异步组件加载完毕，组件实例化之前不可以访问组件实例 this</td>
+</tr>
+<tr>
+<td align="left">beforeRouteUpdate</td>
+<td align="left">当前路由改变，但是该组件被复用时调用(路由路径来源和目标相同(当前页跳转当前页),但参数不同时调用)<br>如&#x2F;users&#x2F;1 和 &#x2F;users&#x2F;2之间之间进行跳转的时候可以访问组件实例 this <br>如搜索页, 当搜索关键字改变时, 在这里更新数据</td>
+</tr>
+<tr>
+<td align="left">beforeRouteLeave</td>
+<td align="left">离开该组件的时候可以访问组件实例 this</td>
+</tr>
+</tbody></table>
+<h4 id="beforeRouteEnter"><a href="#beforeRouteEnter" class="headerlink" title="beforeRouteEnter"></a>beforeRouteEnter</h4><p>beforeRouteEnter是唯一一个支持给 next 传递回调的守卫<br>next是一个函数，在next被回调的时候，会传入组件实例作为next方法的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 路由守卫：判断路由能否跳转，可控制路由跳转（多做登录认证）</span><br><span class="line">// 在渲染该组件的对应路由被 confirm 前调用</span><br><span class="line">    beforeRouteEnter (to, from, next) &#123;</span><br><span class="line">      // 路由守卫有三个参数，to表示即将跳转的路由信息对象(到哪去，跳到当前页的路由对象)，from是路由跳转的来源信息对象（从哪来，从哪里调到此页面的路由对象），next函数，调用时允许路由进入</span><br><span class="line">      console.log(&quot;路由进入之前&quot;, to, from, next);</span><br><span class="line">      // 此时，to的路径必定是/about，如果from的路由路径也是about，会报错，此时需要禁止路由跳转，防止报错</span><br><span class="line">      // next(); // 是否允许被跳转</span><br><span class="line">      // 使用场景：这个路由守卫，常用于做登录认证，在这里判断用户是否已经登录，如果已经登录，调用next()允许进入，如果没有登录，不调用next()，禁止进入。主要针对些需要登录状态才能访问的页面，如：个人信息页</span><br><span class="line">      console.log(this);</span><br><span class="line">      // 路由进入之前，组件还未创建，打印this是undefined，this是不能调的，那么如何在这个路由守卫中获取组件对象this？</span><br><span class="line">      next((vm)=&gt;&#123;</span><br><span class="line">        // next()的参数是一个回调函数，当组件创建完成后调用，回调的函数就是组件对象this</span><br><span class="line">        console.log(vm);</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">beforeRouteEnter (to, from, next) &#123;</span><br><span class="line">  next(vm =&gt; &#123;</span><br><span class="line">    // vm对应的就是组件实例</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="beforeRouteUpdate"><a href="#beforeRouteUpdate" class="headerlink" title="beforeRouteUpdate"></a>beforeRouteUpdate</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 路由守卫：当路由路径来源和目标相同时（当前页跳转当前页），参数不同时，执行这个路由守卫，不会报错（如果参数相同，会直接报错，不会进入路由守卫）</span><br><span class="line">// 举例来说，对于一个带有动态参数的路径 /foo/:id，在/foo/1和/foo/2之间跳转的时候</span><br><span class="line">// 由于会渲染同样的Foo组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。</span><br><span class="line">// 可以访问组件实例 `this`</span><br><span class="line">    beforeRouteUpdate (to, from, next)&#123;</span><br><span class="line">      console.log(&quot;路由更新之前&quot;, to, from, this.$route); </span><br><span class="line">      // 此时这里的this.$route和from里的page一直是不变的是旧的信息，to对象里的数据才是最新值，所以用to.query.page拿到最新的数据</span><br><span class="line">      this.$axios.get(&quot;/douyu/api/room/list&quot;, &#123;</span><br><span class="line">        params: &#123; page: to.query.page &#125;</span><br><span class="line">      &#125;).then(res =&gt; &#123;</span><br><span class="line">        console.log(res.data.data.list);</span><br><span class="line">        this.list = res.data.data.list</span><br><span class="line">      &#125;)</span><br><span class="line">      next();</span><br><span class="line">      // 使用场景：这个路由守卫，常用于写搜索页，当搜索关键词更新时，组件并没有重置也没有显示隐藏，所以普通的生命周期钩子并不会触发，只能在这里更新数据</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+<h4 id="beforeRouteLeave"><a href="#beforeRouteLeave" class="headerlink" title="beforeRouteLeave"></a>beforeRouteLeave</h4><p>离开守卫 通常用来预防用户在离开界面时没有保存修改</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 路由守卫：路由离开前，从当前页跳转到其它页之前调用</span><br><span class="line">// 可以访问组件实例 `this`</span><br><span class="line">    beforeRouteLeave (to, from, next) &#123;</span><br><span class="line">      console.log(&quot;路由离开之前&quot;, to.path, from.path, next);</span><br><span class="line">      next()</span><br><span class="line">      // 使用场景，比如我们网站中遇到的关不掉的广告页面</span><br><span class="line">      // 比如我们在这个函数中能够不掉用next函数，当前页面就不能跳转到其它页面了</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">beforeRouteLeave (to, from) &#123;</span><br><span class="line">  const answer = window.confirm(&#x27;是否确认离开&#x27;)</span><br><span class="line">  // 通过返回false，来取消离开操作</span><br><span class="line">  if (!answer) return false</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="完整的导航解析流程"><a href="#完整的导航解析流程" class="headerlink" title="完整的导航解析流程"></a>完整的导航解析流程</h2><h3>执行的顺序</h3>
+1. beforeEach 前置守卫<br>
+2. beforeEnter 独享守卫<br>  
+3. beforeRouteEnter 组件守卫<br>  
+4. beforeResolve 解析守卫<br>  
+5. afterEach 路由后置守卫<br> 
+  
+
+<p><img src="/images/%E5%AF%BC%E8%88%AA%E8%A7%A3%E6%9E%90%E6%B5%81%E7%A8%8B.png"></p>
+<h2 id="使用路由守卫需要注意哪些问题？"><a href="#使用路由守卫需要注意哪些问题？" class="headerlink" title="使用路由守卫需要注意哪些问题？"></a>使用路由守卫需要注意哪些问题？</h2><p>(1) 由于在任何组件中都能使用this.$router, 所以全局路由守卫可以在任意组件中调用</p>
+<p>(2) beforeRouteEnter路由进入之前,组件还未创建,打印this是undefined, 如果想用组件对象,可以在next()的回调中拿到组件对象 next( vm&#x3D;&gt;{ console.log(vm) })</p>
+<p>(3) this.$router 是&#x2F;src&#x2F;router&#x2F;index.js中创建的路由对象, 全局唯一, 用于编程式导航跳转和全局路由守卫<br>this.$route 是路由跳转的信息对象, 每一个路由对应一个$route对象, 用于路由传值和路由监听</p>
+<p>(4) 路由监听和路由守卫的区别:<br>路由监听: 在组件中watch字段中监听$route, 实现路由监听, 只能监听路由变化, 不能修改路由和限制路由跳转<br>路由守卫: 使用路由钩子函数实现守卫, 路由不止可以监听路由, 还能控制路由跳转</p>
+<p>(5) 当路由跳转时, 跳转的路径和参数与当前完全一致, 没有变化, 不会调用路由钩子函数, 会报错NavigationDuplicated: Avoided redundant navigation to current location: “&#x2F;about?page&#x3D;5”.<br>解决方案如下: 在&#x2F;src&#x2F;router&#x2F;index.js中添加如下代码: 原理是捕获push函数报错, 不抛出错误<br>这条解决方案可以参考：<a href="https://blog.csdn.net/weixin_48940933/article/details/117303240">https://blog.csdn.net/weixin_48940933/article/details/117303240</a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const originalPush = VueRouter.prototype.push</span><br><span class="line">VueRouter.prototype.push = function push(location) &#123;</span><br><span class="line">  return originalPush.call(this, location).catch(err =&gt; &#123;</span><br><span class="line">    //throw(err) // 抛出错误,控制台会显示错误信息, 如果不抛出,控制台不会报错</span><br><span class="line">    return err;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
