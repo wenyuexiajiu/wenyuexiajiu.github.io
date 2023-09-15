@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>butterfly主题修改字体</title>
+    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
+    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
+<p>目录截图：<br><img src="/../images/directory.png"></p>
+<p>内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
+<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
+<p>其他格式字体的常见示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，font-family 字段是可以自己定义的哦</p>
+<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
+<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
+<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ES6学习</title>
     <url>/2023/07/11/ES6%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="rest参数与扩展运算符区别"><a href="#rest参数与扩展运算符区别" class="headerlink" title="rest参数与扩展运算符区别"></a>rest参数与扩展运算符区别</h1><h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>rest 参数叫做不定（剩余）参数，写法就是 … 返回数组结构。<font color="red">这个 … 必须要加到最后一项。只能在结构中的最后。</font></p>
@@ -427,33 +454,6 @@
       </categories>
   </entry>
   <entry>
-    <title>butterfly主题修改字体</title>
-    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
-    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
-<p>目录截图：<br><img src="/../images/directory.png"></p>
-<p>内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
-<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
-<p>其他格式字体的常见示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，font-family 字段是可以自己定义的哦</p>
-<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
-<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
-<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo博客运行命令</title>
     <url>/2023/07/01/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -543,69 +543,6 @@
 
 <p>（3）浏览器返回结果</p>
 <p><img src="/../images/mock/post%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png" alt="img"></p>
-]]></content>
-      <categories>
-        <category>通用</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>markdown添加代码段</title>
-    <url>/2023/07/06/markdown%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81%E6%AE%B5/</url>
-    <content><![CDATA[<h2 id="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"><a href="#格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行" class="headerlink" title="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"></a>格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行</h2><p>例如：<br><img src="/images/ES6/markdown%E4%BB%A3%E7%A0%81%E6%AE%B5%E5%86%99%E6%B3%95.png" alt="代码段示例"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 常用语言及关键字</span><br><span class="line">语言	            关键字</span><br><span class="line">C	            cpp , c</span><br><span class="line">Java	            java</span><br><span class="line">Python	            py , python</span><br><span class="line">PHP	            php</span><br><span class="line">Shell	            bash , shell</span><br><span class="line">C#	            c# , c-sharp , csharp</span><br><span class="line">CSS	            css</span><br><span class="line">JavaScript	    js , jscript , javascript</span><br><span class="line">text	            text , plain</span><br><span class="line">XML	            xml , xhtml , xslt , html</span><br><span class="line">R	            r , s , splus</span><br><span class="line">GO	            go , golang</span><br><span class="line">AppleScript	    applescript</span><br><span class="line">ActionScript <span class="number">3.0</span>    actionscript3 , as3</span><br><span class="line">ColdFusion	    coldfusion , cf</span><br><span class="line">Delphi	            delphi , pascal , pas</span><br><span class="line">diff&amp;patch	    diff patch</span><br><span class="line">Erlang	            erl , erlang</span><br><span class="line">Groovy	            groovy</span><br><span class="line">JavaFX	            jfx , javafx</span><br><span class="line">Perl	            perl , pl , Perl</span><br><span class="line">Ruby	            ruby , rails , ror , rb</span><br><span class="line">SASS&amp;SCSS	    sass , scss</span><br><span class="line">Scala	            scala</span><br><span class="line">SQL	            sql</span><br><span class="line">Visual Basic	    vb , vbnet</span><br><span class="line">Objective C	    objc , obj-c</span><br><span class="line">F#	            f# f-sharp , fsharp</span><br><span class="line">matlab	            matlab</span><br><span class="line">swift	            swift</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>通用</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>volta安装及使用</title>
-    <url>/2023/07/12/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
-<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
-<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
-<ul>
-<li>volta</li>
-<li>volta-migrate</li>
-<li>volta-shim</li>
-</ul>
-<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
-<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
-<p>大功告成</p>
-]]></content>
-      <categories>
-        <category>通用</category>
-      </categories>
-      <tags>
-        <tag>web前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>volta管理node版本</title>
-    <url>/2023/07/18/volta%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC/</url>
-    <content><![CDATA[<h2 id="为啥使用volta或nvm来管理node版本呢？"><a href="#为啥使用volta或nvm来管理node版本呢？" class="headerlink" title="为啥使用volta或nvm来管理node版本呢？"></a>为啥使用volta或nvm来管理node版本呢？</h2><h3 id="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案"><a href="#假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案" class="headerlink" title="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:"></a>假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:</h3><ol>
-<li>本地下载多个node包，一定是zip格式的才可以，但是环境变量中的node名称不变，所以每次，只需要将node本地的包名修改即可。举例：</li>
-</ol>
-<p><strong>环境变量path：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br></pre></td></tr></table></figure>
-<p><strong>本地node包：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br><span class="line">c:x\node-16</span><br><span class="line">c:x\node-18</span><br></pre></td></tr></table></figure>
-<p>那么当前我想使用18怎么办？只需要将node18本地包名称改为node14即可，所以根本原则就是只需要把你的目标版本名称，改为path中对应的node版本及名称即可。</p>
-<ol start="2">
-<li>使用votal<br>nvm我都不直接推荐各位了，理由就是我更喜欢valta，至于它和nvm的异同，大家感兴趣自行查阅。因为我用的是windows，所以就讲如何在windows下安装以及使用了。</li>
-</ol>
-<ul>
-<li>安装volta（卸载nvm的前提下）</li>
-<li>在项目根目录【package.json所在目录】下：</li>
-</ul>
-<h2 id="用volta安装node。"><a href="#用volta安装node。" class="headerlink" title="用volta安装node。"></a>用volta安装node。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta install xxx</span><br></pre></td></tr></table></figure>
-<h2 id="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"><a href="#用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。" class="headerlink" title="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"></a>用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta list</span><br></pre></td></tr></table></figure>
-<h2 id="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："><a href="#用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：" class="headerlink" title="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："></a>用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta pin node@16.20.1</span><br><span class="line">volta pin yarn@4.0.0-rc.46</span><br></pre></td></tr></table></figure>
-<h2 id="若成功，则package-json中有此类标识："><a href="#若成功，则package-json中有此类标识：" class="headerlink" title="若成功，则package.json中有此类标识："></a>若成功，则package.json中有此类标识：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;volta&quot;: &#123;</span><br><span class="line">  &quot;node&quot;: &quot;16.20.1&quot;,</span><br><span class="line">  &quot;yarn&quot;: &quot;4.0.0-rc.46&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行项目。注意执行项目和volta无任何关系。依然以package.json中定义的指令为准。</p>
 ]]></content>
       <categories>
         <category>通用</category>
@@ -854,6 +791,17 @@
       </categories>
   </entry>
   <entry>
+    <title>markdown添加代码段</title>
+    <url>/2023/07/06/markdown%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81%E6%AE%B5/</url>
+    <content><![CDATA[<h2 id="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"><a href="#格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行" class="headerlink" title="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"></a>格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行</h2><p>例如：<br><img src="/images/ES6/markdown%E4%BB%A3%E7%A0%81%E6%AE%B5%E5%86%99%E6%B3%95.png" alt="代码段示例"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 常用语言及关键字</span><br><span class="line">语言	            关键字</span><br><span class="line">C	            cpp , c</span><br><span class="line">Java	            java</span><br><span class="line">Python	            py , python</span><br><span class="line">PHP	            php</span><br><span class="line">Shell	            bash , shell</span><br><span class="line">C#	            c# , c-sharp , csharp</span><br><span class="line">CSS	            css</span><br><span class="line">JavaScript	    js , jscript , javascript</span><br><span class="line">text	            text , plain</span><br><span class="line">XML	            xml , xhtml , xslt , html</span><br><span class="line">R	            r , s , splus</span><br><span class="line">GO	            go , golang</span><br><span class="line">AppleScript	    applescript</span><br><span class="line">ActionScript <span class="number">3.0</span>    actionscript3 , as3</span><br><span class="line">ColdFusion	    coldfusion , cf</span><br><span class="line">Delphi	            delphi , pascal , pas</span><br><span class="line">diff&amp;patch	    diff patch</span><br><span class="line">Erlang	            erl , erlang</span><br><span class="line">Groovy	            groovy</span><br><span class="line">JavaFX	            jfx , javafx</span><br><span class="line">Perl	            perl , pl , Perl</span><br><span class="line">Ruby	            ruby , rails , ror , rb</span><br><span class="line">SASS&amp;SCSS	    sass , scss</span><br><span class="line">Scala	            scala</span><br><span class="line">SQL	            sql</span><br><span class="line">Visual Basic	    vb , vbnet</span><br><span class="line">Objective C	    objc , obj-c</span><br><span class="line">F#	            f# f-sharp , fsharp</span><br><span class="line">matlab	            matlab</span><br><span class="line">swift	            swift</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+  </entry>
+  <entry>
     <title>vue-router导航守卫</title>
     <url>/2023/07/09/vue-router%E5%AF%BC%E8%88%AA%E5%AE%88%E5%8D%AB/</url>
     <content><![CDATA[<h2 id="什么是导航守卫（路由守卫）"><a href="#什么是导航守卫（路由守卫）" class="headerlink" title="什么是导航守卫（路由守卫）"></a>什么是导航守卫（路由守卫）</h2><p>在vue-router的官方文档中, 将<font color=red>路由钩子</font>翻译为<font color=red>导航守卫（路由守卫）</font>, 它是在路由跳转过程中调用的函数, 通过路由守卫可获取路由信息和阻止路由跳转  </p>
@@ -984,6 +932,34 @@
       <tags>
         <tag>vue</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>volta管理node版本</title>
+    <url>/2023/07/18/volta%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC/</url>
+    <content><![CDATA[<h2 id="为啥使用volta或nvm来管理node版本呢？"><a href="#为啥使用volta或nvm来管理node版本呢？" class="headerlink" title="为啥使用volta或nvm来管理node版本呢？"></a>为啥使用volta或nvm来管理node版本呢？</h2><h3 id="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案"><a href="#假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案" class="headerlink" title="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:"></a>假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:</h3><ol>
+<li>本地下载多个node包，一定是zip格式的才可以，但是环境变量中的node名称不变，所以每次，只需要将node本地的包名修改即可。举例：</li>
+</ol>
+<p><strong>环境变量path：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br></pre></td></tr></table></figure>
+<p><strong>本地node包：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br><span class="line">c:x\node-16</span><br><span class="line">c:x\node-18</span><br></pre></td></tr></table></figure>
+<p>那么当前我想使用18怎么办？只需要将node18本地包名称改为node14即可，所以根本原则就是只需要把你的目标版本名称，改为path中对应的node版本及名称即可。</p>
+<ol start="2">
+<li>使用votal<br>nvm我都不直接推荐各位了，理由就是我更喜欢valta，至于它和nvm的异同，大家感兴趣自行查阅。因为我用的是windows，所以就讲如何在windows下安装以及使用了。</li>
+</ol>
+<ul>
+<li>安装volta（卸载nvm的前提下）</li>
+<li>在项目根目录【package.json所在目录】下：</li>
+</ul>
+<h2 id="用volta安装node。"><a href="#用volta安装node。" class="headerlink" title="用volta安装node。"></a>用volta安装node。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta install xxx</span><br></pre></td></tr></table></figure>
+<h2 id="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"><a href="#用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。" class="headerlink" title="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"></a>用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta list</span><br></pre></td></tr></table></figure>
+<h2 id="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："><a href="#用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：" class="headerlink" title="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："></a>用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta pin node@16.20.1</span><br><span class="line">volta pin yarn@4.0.0-rc.46</span><br></pre></td></tr></table></figure>
+<h2 id="若成功，则package-json中有此类标识："><a href="#若成功，则package-json中有此类标识：" class="headerlink" title="若成功，则package.json中有此类标识："></a>若成功，则package.json中有此类标识：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;volta&quot;: &#123;</span><br><span class="line">  &quot;node&quot;: &quot;16.20.1&quot;,</span><br><span class="line">  &quot;yarn&quot;: &quot;4.0.0-rc.46&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行项目。注意执行项目和volta无任何关系。依然以package.json中定义的指令为准。</p>
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
   </entry>
   <entry>
     <title>【微信小程序】组件的生命周期及自定义组件</title>
@@ -1149,8 +1125,32 @@
       </tags>
   </entry>
   <entry>
+    <title>volta安装及使用</title>
+    <url>/2023/07/12/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
+<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
+<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
+<ul>
+<li>volta</li>
+<li>volta-migrate</li>
+<li>volta-shim</li>
+</ul>
+<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
+<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
+<p>大功告成</p>
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+      <tags>
+        <tag>web前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>电脑百度网盘倍速超清设置</title>
-    <url>/2023/07/03/%E7%94%B5%E8%84%91%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E5%80%8D%E9%80%9F%E8%B6%85%E6%B8%85%E8%AE%BE%E7%BD%AE/</url>
+    <url>/2023/06/01/%E7%94%B5%E8%84%91%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E5%80%8D%E9%80%9F%E8%B6%85%E6%B8%85%E8%AE%BE%E7%BD%AE/</url>
     <content><![CDATA[<p>仅限Edge浏览器电脑倍速画质<br>视频内安装插件需要用到的三个步骤与链接（链接不要在微信打开，否则可能会无法访问）<br>安装使用步骤：</p>
 <iframe height=498 width=785 src="/images/电脑百度网盘倍速超清设置步骤.mp4"></iframe>  
 步骤一：安装Microsoft Edge浏览器(部分WIN电脑自带EDGE浏览器无需重复安装)  
