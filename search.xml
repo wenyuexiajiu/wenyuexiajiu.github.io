@@ -1,6 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>butterfly主题修改字体</title>
+    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
+    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
+<p>目录截图：<br><img src="/../images/directory.png"></p>
+<p>内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
+<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
+<p>其他格式字体的常见示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，font-family 字段是可以自己定义的哦</p>
+<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
+<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
+<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue组件传参</title>
+    <url>/2023/09/01/Vue%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%8F%82/</url>
+    <content><![CDATA[<h1 id="Vue组件传参"><a href="#Vue组件传参" class="headerlink" title="Vue组件传参"></a>Vue组件传参</h1><h3 id="🎯-类型："><a href="#🎯-类型：" class="headerlink" title="🎯 类型："></a>🎯 类型：</h3><ul>
+<li>父向子传参</li>
+<li>子向父传参</li>
+<li>兄弟之间传参</li>
+</ul>
+<h3 id="❓-什么是父子组件"><a href="#❓-什么是父子组件" class="headerlink" title="❓ 什么是父子组件"></a>❓ 什么是父子组件</h3><p>父子组件的定义有两种，我称为常规父子组件和特殊父子组件</p>
+<h4 id="1、常规父子组件"><a href="#1、常规父子组件" class="headerlink" title="1、常规父子组件"></a>1、常规父子组件</h4><p>将其他组件以import引入用自定义标签接收，在当前组件中component里注册该标签，页面上可以直接用&lt;自定义标签&gt;&lt;&#x2F;自定义标签&gt;样子使用。当前组件为父组件，被引入的组件为子组件。</p>
+<p>举个例子👇：</p>
+<p>（1）引入子组件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> dialogComponent <span class="keyword">from</span> <span class="string">&quot;../../components/gameCenter/dialog&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>（2）注册子组件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">components</span>: &#123;</span><br><span class="line">   dialogComponent,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>（3）使用子组件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog-component</span> <span class="attr">v-if</span>=<span class="string">&quot;visiable&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dialog&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">dialog-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2、特殊父子组件"><a href="#2、特殊父子组件" class="headerlink" title="2、特殊父子组件"></a>2、特殊父子组件</h4><p>在路由中定义好组件，组件中含有children，页面上通过<router-view></router-view>形式使用，也算是父子组件，当前组件为父组件，router-view路由的为子组件。</p>
+<p>举个例子👇：</p>
+<p>写法一：</p>
+<p>（1）在router文件夹下的index.js中定义路由</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 后台主页面</span></span><br><span class="line">  <span class="attr">path</span>: <span class="string">&quot;/home&quot;</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;Home&quot;</span>,</span><br><span class="line">  <span class="attr">component</span>: <span class="function">() =&gt;</span></span><br><span class="line">    <span class="keyword">import</span>(</span><br><span class="line">      <span class="comment">/* webpackChunkName: &quot;Home&quot; */</span> <span class="string">&quot;@/views/home.vue&quot;</span></span><br><span class="line">    ),</span><br><span class="line">    <span class="attr">children</span>:[</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&#x27;&#x27;</span>,<span class="attr">name</span>:<span class="string">&quot;Card&quot;</span>,<span class="attr">component</span>:<span class="function">() =&gt;</span><span class="keyword">import</span>( <span class="comment">/* webpackChunkName: &quot;Card&quot; */</span> <span class="string">&quot;@/views/backstage/card.vue&quot;</span>),</span><br><span class="line">      &#125;, </span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&#x27;editCard&#x27;</span>,<span class="attr">name</span>:<span class="string">&quot;EditCard&quot;</span>,<span class="attr">component</span>:<span class="function">() =&gt;</span><span class="keyword">import</span>( <span class="comment">/* webpackChunkName: &quot;EditCard&quot; */</span> <span class="string">&quot;@/views/backstage/editCard.vue&quot;</span>),</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&#x27;userInformation&#x27;</span>,<span class="attr">name</span>:<span class="string">&quot;userInformation&quot;</span>,<span class="attr">component</span>:<span class="function">() =&gt;</span><span class="keyword">import</span>( <span class="comment">/* webpackChunkName: &quot;UserInformation&quot; */</span> <span class="string">&quot;@/views/userManagement/userInformation.vue&quot;</span>)</span><br><span class="line">      &#125;, </span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&#x27;userCheck&#x27;</span>,<span class="attr">name</span>:<span class="string">&quot;userCheck&quot;</span>,<span class="attr">component</span>:<span class="function">() =&gt;</span><span class="keyword">import</span>( <span class="comment">/* webpackChunkName: &quot;UserCheck&quot; */</span> <span class="string">&quot;@/views/userManagement/userCheck.vue&quot;</span>)</span><br><span class="line">      &#125;, </span><br><span class="line">    ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>（2）在父组件中引入</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>写法二：</p>
+<p>（1）在router文件夹下的index.js中定义路由</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B61.png" alt="img"></p>
+<p>（2）在main.vue中引入</p>
+<p>  <img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B62.png" alt="img"></p>
+<p>  当前的main.vue为父组件，router-view引入的container.vue为子组件。</p>
+<h3 id="🤵-gt-🏃-父传子"><a href="#🤵-gt-🏃-父传子" class="headerlink" title="🤵-&gt;🏃 父传子"></a>🤵-&gt;🏃 父传子</h3><p>父传子：父组件传递过去的数据，子组件通过 props 来接收。(接收的数据只读，不能修改)</p>
+<h4 id="1、常规父组件传参到子组件"><a href="#1、常规父组件传参到子组件" class="headerlink" title="1、常规父组件传参到子组件"></a>1、常规父组件传参到子组件</h4><p>子组件接收的值可以为：Number、String、Boolen、Array、Object、</p>
+<h5 id="举个例子👇："><a href="#举个例子👇：" class="headerlink" title="举个例子👇："></a>举个例子👇：</h5><p>⭐示例一：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">CounterCom</span> <span class="attr">:num</span>=<span class="string">&quot;5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">CounterCom</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;  </span><br><span class="line">  <span class="attr">props</span>: &#123;</span><br><span class="line">    <span class="comment">// 写法一</span></span><br><span class="line">    <span class="comment">//父组件传来的值</span></span><br><span class="line">    <span class="attr">num</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="title class_">Number</span>, <span class="comment">//类型</span></span><br><span class="line">        <span class="attr">default</span>:<span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 写法二</span></span><br><span class="line">    <span class="string">&quot;num&quot;</span>:&#123;<span class="attr">type</span>:<span class="title class_">Number</span>,<span class="attr">default</span>:<span class="number">1</span>&#125;,</span><br><span class="line">    <span class="comment">// 写法三</span></span><br><span class="line">    num : <span class="title class_">Number</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>⭐ 示例二：</p>
+<p>（1）在main.vue父组件上的数据和方法：</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%901.png" alt="img"></p>
+<p>（2）在main.vue父组件上传递数据和方法：</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%902.png" alt="img"></p>
+<p>（3）在header.vue子组件上引入父组件传递过来的数据和方法：</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%903.png" alt="img"></p>
+<p>（4）在header.vue子组件上使用父组件传递的数据和方法：</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%904.png" alt="img"></p>
+<h4 id="2、特殊父组件传参到子组件"><a href="#2、特殊父组件传参到子组件" class="headerlink" title="2、特殊父组件传参到子组件"></a>2、特殊父组件传参到子组件</h4><p>在main.vue父组件基本同上，区别在于传递父组件的方法函数时使用“v-on:”或”@“，而不是用“:“ </p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%905.png" alt="img"></p>
+<p>在container.vue子组件上基本相同，区别在于接受父组件传递过来的方法函数不使用props,通过在methods中定义一个新方法，在方法体里面写this.$emit(‘testRouter’,’val’)，以这种形式获取父组件的方法，再赋值给子组件新定义的方法，注意testRouter是父组件中绑定的时候自己定义的名字，val的取值，若该方法带参数则加上，不带则加空字符串即可。</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%906.png" alt="img"></p>
+<h3 id="🏃-gt-🤵-子传父"><a href="#🏃-gt-🤵-子传父" class="headerlink" title="🏃-&gt;🤵 子传父"></a>🏃-&gt;🤵 子传父</h3><h4 id="1、常规的子组件传递数据和方法到父组件中"><a href="#1、常规的子组件传递数据和方法到父组件中" class="headerlink" title="1、常规的子组件传递数据和方法到父组件中"></a>1、常规的子组件传递数据和方法到父组件中</h4><h5 id="（1）传递数据"><a href="#（1）传递数据" class="headerlink" title="（1）传递数据"></a>（1）传递数据</h5><p>子组件主要通过事件传递数据给父组件（使用$emit发射数据），$emit中第一个参数为事件名，第二个参数为事件值</p>
+<h6 id="举个例子👇：-1"><a href="#举个例子👇：-1" class="headerlink" title="举个例子👇："></a>举个例子👇：</h6><p>⭐示例一：</p>
+<p>子组件定义一个方法，方法中通过this.$emit(‘transferNum’,this.num)方式发送数据num，父组件中监听transferNum事件，当事件触发时，执行函数，进行赋值。</p>
+<p>子组件的数据和发送数据方法：</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B61.png" alt="img"></p>
+<p>父组件中监听子组件中发送函数的方法，并赋值。</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B62.png" alt="img"></p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B63.png" alt="img"></p>
+<p>这样在父组件中就可以使用data中的num这个数据了。</p>
+<p>⭐示例二：</p>
+<p>$emit中第一个参数为事件名，第二个参数为事件值</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;active&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;counter++;$emit(&#x27;counterchange&#x27;,counter)&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123;counter&#125;&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在父组件绑定 countChange 事件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">counter-com</span> @<span class="attr">counterchange</span>=<span class="string">&quot;n=$event&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">counter-com</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="（2）传递方法"><a href="#（2）传递方法" class="headerlink" title="（2）传递方法"></a>（2）传递方法</h5><p>子组件定义好方法，父组件在引用子组件的时候在自定义标签中添加标识符，ref&#x3D;”child1”，用来表示这个子组件。父组件在methods中定义自己的方法名，方法主体：this.$refs.child1.fun。意思是通过调用$refs中名字叫child1的子组件里的fun方法，赋值给父组件。</p>
+<p>子组件定义方法</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B64.png" alt="img"></p>
+<p>父组件中引用子组件时，添加一个标识符ref&#x3D;’abc’,注意ref是语法，abc是标识</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B65.png" alt="img"></p>
+<p>父组件中定义一个方法，主体内容如图，表示方法就是标识为aaa的子组件里的setFun方法。</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B66.png" alt="img"></p>
+<p>调用gerFun方法</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B67.png" alt="img"></p>
+<h4 id="2、特殊的子组件传递数据和方法到父组件中"><a href="#2、特殊的子组件传递数据和方法到父组件中" class="headerlink" title="2、特殊的子组件传递数据和方法到父组件中"></a>2、特殊的子组件传递数据和方法到父组件中</h4><p>经过测试，特殊的子组件传递数据和方法到父组件中与普通的子组件传递数据和方法到父组件中是一样的。</p>
+<h3 id="🤵-gt-🤵-兄弟组件传值"><a href="#🤵-gt-🤵-兄弟组件传值" class="headerlink" title="🤵-&gt;🤵 兄弟组件传值"></a>🤵-&gt;🤵 兄弟组件传值</h3><h4 id="1、兄弟组件引入"><a href="#1、兄弟组件引入" class="headerlink" title="1、兄弟组件引入"></a>1、兄弟组件引入</h4><p>两个组件作为子组件被同一个父组件所引用</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B61.png" alt="img"></p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B62.png" alt="img"></p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B63.png" alt="img"></p>
+<h4 id="2、main-js里的设置"><a href="#2、main-js里的设置" class="headerlink" title="2、main.js里的设置"></a>2、main.js里的设置</h4><p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B64.png" alt="img"></p>
+<h4 id="3、两个兄弟组件之间的语法"><a href="#3、两个兄弟组件之间的语法" class="headerlink" title="3、两个兄弟组件之间的语法"></a>3、两个兄弟组件之间的语法</h4><p>组件Header.vue需要定义一个发送数据的方法，此处sendMsg是定义在此的方法，页面点击时候触发此函数，函数主体，通过Bus中央事件总线用$emit发送一个send事件，事件的功能就是传送一个“hello world!”的数据，区分sendMsg和send，前者是当前页面的点击事件，后者是发送出去，需要其他组件监听的事件。</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B65.png" alt="img"></p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B66.png" alt="img"></p>
+<p>组件Copy.vue中，在生命周期为created的时候，通过Bus中央事件总线用$on监听组件1中发送的send事件，用一个带参数的回调函数，接收穿过来的值，参数即为传的值 ，把值赋值给当前组件的变量。</p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B67.png" alt="img"></p>
+<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B68.png" alt="img"></p>
+<p>兄弟组件间就不互相调用对方的方法了，多次使用的话就单独封装成一个方法在独立的js格式文件中，到时直接调用。</p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ES6学习</title>
     <url>/2023/07/11/ES6%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h1 id="rest参数与扩展运算符区别"><a href="#rest参数与扩展运算符区别" class="headerlink" title="rest参数与扩展运算符区别"></a>rest参数与扩展运算符区别</h1><h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>rest 参数叫做不定（剩余）参数，写法就是 … 返回数组结构。<font color="red">这个 … 必须要加到最后一项。只能在结构中的最后。</font></p>
@@ -428,7 +556,7 @@
   </entry>
   <entry>
     <title>Vue项目使用WebSocket技术</title>
-    <url>/2023/09/16/Vue%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8WebSocket%E6%8A%80%E6%9C%AF/</url>
+    <url>/2023/09/01/Vue%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8WebSocket%E6%8A%80%E6%9C%AF/</url>
     <content><![CDATA[<h1 id="Vue项目使用WebSocket技术"><a href="#Vue项目使用WebSocket技术" class="headerlink" title="Vue项目使用WebSocket技术"></a>Vue项目使用WebSocket技术</h1><p>【基础】为什么使用WebSocket？</p>
 <p>前端和后端的交互模式最常见的就是前端发数据请求，后端响应传输数据之前端进行展示。如果前端不操作，后端不能主动向前端推送数据。因此，在业务场景需服务端主动向客户端推送消息，同时客户端也可以主动向服务端发送消息时，那就有了WebSocket的用武之地。</p>
 <p>【特点】WebSocket的特点如下：</p>
@@ -506,167 +634,6 @@
       <tags>
         <tag>vue</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Vue组件传参</title>
-    <url>/2023/09/16/Vue%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%8F%82/</url>
-    <content><![CDATA[<h1 id="Vue组件传参"><a href="#Vue组件传参" class="headerlink" title="Vue组件传参"></a>Vue组件传参</h1><h3 id="🎯-类型："><a href="#🎯-类型：" class="headerlink" title="🎯 类型："></a>🎯 类型：</h3><ul>
-<li>父向子传参</li>
-<li>子向父传参</li>
-<li>兄弟之间传参</li>
-</ul>
-<h3 id="❓-什么是父子组件"><a href="#❓-什么是父子组件" class="headerlink" title="❓ 什么是父子组件"></a>❓ 什么是父子组件</h3><p>父子组件的定义有两种，我称为常规父子组件和特殊父子组件</p>
-<h4 id="1、常规父子组件"><a href="#1、常规父子组件" class="headerlink" title="1、常规父子组件"></a>1、常规父子组件</h4><p>将其他组件以import引入用自定义标签接收，在当前组件中component里注册该标签，页面上可以直接用&lt;自定义标签&gt;&lt;&#x2F;自定义标签&gt;样子使用。当前组件为父组件，被引入的组件为子组件。</p>
-<p>举个例子👇：</p>
-<p>（1）引入子组件</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> dialogComponent <span class="keyword">from</span> <span class="string">&quot;../../components/gameCenter/dialog&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>（2）注册子组件</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="attr">components</span>: &#123;</span><br><span class="line">   dialogComponent,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
-
-<p>（3）使用子组件</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog-component</span> <span class="attr">v-if</span>=<span class="string">&quot;visiable&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dialog&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">dialog-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2、特殊父子组件"><a href="#2、特殊父子组件" class="headerlink" title="2、特殊父子组件"></a>2、特殊父子组件</h4><p>在路由中定义好组件，组件中含有children，页面上通过<router-view></router-view>形式使用，也算是父子组件，当前组件为父组件，router-view路由的为子组件。</p>
-<p>举个例子👇：</p>
-<p>写法一：</p>
-<p>（1）在router文件夹下的index.js中定义路由</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 后台主页面</span></span><br><span class="line">  <span class="attr">path</span>: <span class="string">&quot;/home&quot;</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;Home&quot;</span>,</span><br><span class="line">  <span class="attr">component</span>: <span class="function">() =&gt;</span></span><br><span class="line">    <span class="keyword">import</span>(</span><br><span class="line">      <span class="comment">/* webpackChunkName: &quot;Home&quot; */</span> <span class="string">&quot;@/views/home.vue&quot;</span></span><br><span class="line">    ),</span><br><span class="line">    <span class="attr">children</span>:[</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&#x27;&#x27;</span>,<span class="attr">name</span>:<span class="string">&quot;Card&quot;</span>,<span class="attr">component</span>:<span class="function">() =&gt;</span><span class="keyword">import</span>( <span class="comment">/* webpackChunkName: &quot;Card&quot; */</span> <span class="string">&quot;@/views/backstage/card.vue&quot;</span>),</span><br><span class="line">      &#125;, </span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&#x27;editCard&#x27;</span>,<span class="attr">name</span>:<span class="string">&quot;EditCard&quot;</span>,<span class="attr">component</span>:<span class="function">() =&gt;</span><span class="keyword">import</span>( <span class="comment">/* webpackChunkName: &quot;EditCard&quot; */</span> <span class="string">&quot;@/views/backstage/editCard.vue&quot;</span>),</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&#x27;userInformation&#x27;</span>,<span class="attr">name</span>:<span class="string">&quot;userInformation&quot;</span>,<span class="attr">component</span>:<span class="function">() =&gt;</span><span class="keyword">import</span>( <span class="comment">/* webpackChunkName: &quot;UserInformation&quot; */</span> <span class="string">&quot;@/views/userManagement/userInformation.vue&quot;</span>)</span><br><span class="line">      &#125;, </span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">path</span>:<span class="string">&#x27;userCheck&#x27;</span>,<span class="attr">name</span>:<span class="string">&quot;userCheck&quot;</span>,<span class="attr">component</span>:<span class="function">() =&gt;</span><span class="keyword">import</span>( <span class="comment">/* webpackChunkName: &quot;UserCheck&quot; */</span> <span class="string">&quot;@/views/userManagement/userCheck.vue&quot;</span>)</span><br><span class="line">      &#125;, </span><br><span class="line">    ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>（2）在父组件中引入</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>写法二：</p>
-<p>（1）在router文件夹下的index.js中定义路由</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B61.png" alt="img"></p>
-<p>（2）在main.vue中引入</p>
-<p>  <img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B62.png" alt="img"></p>
-<p>  当前的main.vue为父组件，router-view引入的container.vue为子组件。</p>
-<h3 id="🤵-gt-🏃-父传子"><a href="#🤵-gt-🏃-父传子" class="headerlink" title="🤵-&gt;🏃 父传子"></a>🤵-&gt;🏃 父传子</h3><p>父传子：父组件传递过去的数据，子组件通过 props 来接收。(接收的数据只读，不能修改)</p>
-<h4 id="1、常规父组件传参到子组件"><a href="#1、常规父组件传参到子组件" class="headerlink" title="1、常规父组件传参到子组件"></a>1、常规父组件传参到子组件</h4><p>子组件接收的值可以为：Number、String、Boolen、Array、Object、</p>
-<h5 id="举个例子👇："><a href="#举个例子👇：" class="headerlink" title="举个例子👇："></a>举个例子👇：</h5><p>⭐示例一：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">CounterCom</span> <span class="attr">:num</span>=<span class="string">&quot;5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">CounterCom</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span>&#123;  </span><br><span class="line">  <span class="attr">props</span>: &#123;</span><br><span class="line">    <span class="comment">// 写法一</span></span><br><span class="line">    <span class="comment">//父组件传来的值</span></span><br><span class="line">    <span class="attr">num</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="title class_">Number</span>, <span class="comment">//类型</span></span><br><span class="line">        <span class="attr">default</span>:<span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 写法二</span></span><br><span class="line">    <span class="string">&quot;num&quot;</span>:&#123;<span class="attr">type</span>:<span class="title class_">Number</span>,<span class="attr">default</span>:<span class="number">1</span>&#125;,</span><br><span class="line">    <span class="comment">// 写法三</span></span><br><span class="line">    num : <span class="title class_">Number</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>⭐ 示例二：</p>
-<p>（1）在main.vue父组件上的数据和方法：</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%901.png" alt="img"></p>
-<p>（2）在main.vue父组件上传递数据和方法：</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%902.png" alt="img"></p>
-<p>（3）在header.vue子组件上引入父组件传递过来的数据和方法：</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%903.png" alt="img"></p>
-<p>（4）在header.vue子组件上使用父组件传递的数据和方法：</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%904.png" alt="img"></p>
-<h4 id="2、特殊父组件传参到子组件"><a href="#2、特殊父组件传参到子组件" class="headerlink" title="2、特殊父组件传参到子组件"></a>2、特殊父组件传参到子组件</h4><p>在main.vue父组件基本同上，区别在于传递父组件的方法函数时使用“v-on:”或”@“，而不是用“:“ </p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%905.png" alt="img"></p>
-<p>在container.vue子组件上基本相同，区别在于接受父组件传递过来的方法函数不使用props,通过在methods中定义一个新方法，在方法体里面写this.$emit(‘testRouter’,’val’)，以这种形式获取父组件的方法，再赋值给子组件新定义的方法，注意testRouter是父组件中绑定的时候自己定义的名字，val的取值，若该方法带参数则加上，不带则加空字符串即可。</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E7%88%B6%E4%BC%A0%E5%AD%906.png" alt="img"></p>
-<h3 id="🏃-gt-🤵-子传父"><a href="#🏃-gt-🤵-子传父" class="headerlink" title="🏃-&gt;🤵 子传父"></a>🏃-&gt;🤵 子传父</h3><h4 id="1、常规的子组件传递数据和方法到父组件中"><a href="#1、常规的子组件传递数据和方法到父组件中" class="headerlink" title="1、常规的子组件传递数据和方法到父组件中"></a>1、常规的子组件传递数据和方法到父组件中</h4><h5 id="（1）传递数据"><a href="#（1）传递数据" class="headerlink" title="（1）传递数据"></a>（1）传递数据</h5><p>子组件主要通过事件传递数据给父组件（使用$emit发射数据），$emit中第一个参数为事件名，第二个参数为事件值</p>
-<h6 id="举个例子👇：-1"><a href="#举个例子👇：-1" class="headerlink" title="举个例子👇："></a>举个例子👇：</h6><p>⭐示例一：</p>
-<p>子组件定义一个方法，方法中通过this.$emit(‘transferNum’,this.num)方式发送数据num，父组件中监听transferNum事件，当事件触发时，执行函数，进行赋值。</p>
-<p>子组件的数据和发送数据方法：</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B61.png" alt="img"></p>
-<p>父组件中监听子组件中发送函数的方法，并赋值。</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B62.png" alt="img"></p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B63.png" alt="img"></p>
-<p>这样在父组件中就可以使用data中的num这个数据了。</p>
-<p>⭐示例二：</p>
-<p>$emit中第一个参数为事件名，第二个参数为事件值</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;active&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;counter++;$emit(&#x27;counterchange&#x27;,counter)&quot;</span>&gt;</span></span><br><span class="line">        &#123;&#123;counter&#125;&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在父组件绑定 countChange 事件</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">counter-com</span> @<span class="attr">counterchange</span>=<span class="string">&quot;n=$event&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">counter-com</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="（2）传递方法"><a href="#（2）传递方法" class="headerlink" title="（2）传递方法"></a>（2）传递方法</h5><p>子组件定义好方法，父组件在引用子组件的时候在自定义标签中添加标识符，ref&#x3D;”child1”，用来表示这个子组件。父组件在methods中定义自己的方法名，方法主体：this.$refs.child1.fun。意思是通过调用$refs中名字叫child1的子组件里的fun方法，赋值给父组件。</p>
-<p>子组件定义方法</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B64.png" alt="img"></p>
-<p>父组件中引用子组件时，添加一个标识符ref&#x3D;’abc’,注意ref是语法，abc是标识</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B65.png" alt="img"></p>
-<p>父组件中定义一个方法，主体内容如图，表示方法就是标识为aaa的子组件里的setFun方法。</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B66.png" alt="img"></p>
-<p>调用gerFun方法</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%AD%90%E4%BC%A0%E7%88%B67.png" alt="img"></p>
-<h4 id="2、特殊的子组件传递数据和方法到父组件中"><a href="#2、特殊的子组件传递数据和方法到父组件中" class="headerlink" title="2、特殊的子组件传递数据和方法到父组件中"></a>2、特殊的子组件传递数据和方法到父组件中</h4><p>经过测试，特殊的子组件传递数据和方法到父组件中与普通的子组件传递数据和方法到父组件中是一样的。</p>
-<h3 id="🤵-gt-🤵-兄弟组件传值"><a href="#🤵-gt-🤵-兄弟组件传值" class="headerlink" title="🤵-&gt;🤵 兄弟组件传值"></a>🤵-&gt;🤵 兄弟组件传值</h3><h4 id="1、兄弟组件引入"><a href="#1、兄弟组件引入" class="headerlink" title="1、兄弟组件引入"></a>1、兄弟组件引入</h4><p>两个组件作为子组件被同一个父组件所引用</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B61.png" alt="img"></p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B62.png" alt="img"></p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B63.png" alt="img"></p>
-<h4 id="2、main-js里的设置"><a href="#2、main-js里的设置" class="headerlink" title="2、main.js里的设置"></a>2、main.js里的设置</h4><p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B64.png" alt="img"></p>
-<h4 id="3、两个兄弟组件之间的语法"><a href="#3、两个兄弟组件之间的语法" class="headerlink" title="3、两个兄弟组件之间的语法"></a>3、两个兄弟组件之间的语法</h4><p>组件Header.vue需要定义一个发送数据的方法，此处sendMsg是定义在此的方法，页面点击时候触发此函数，函数主体，通过Bus中央事件总线用$emit发送一个send事件，事件的功能就是传送一个“hello world!”的数据，区分sendMsg和send，前者是当前页面的点击事件，后者是发送出去，需要其他组件监听的事件。</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B65.png" alt="img"></p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B66.png" alt="img"></p>
-<p>组件Copy.vue中，在生命周期为created的时候，通过Bus中央事件总线用$on监听组件1中发送的send事件，用一个带参数的回调函数，接收穿过来的值，参数即为传的值 ，把值赋值给当前组件的变量。</p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B67.png" alt="img"></p>
-<p><img src="/../images/vue/%E7%BB%84%E9%97%B4%E4%BC%A0%E5%8F%82/%E5%85%84%E5%BC%9F%E7%BB%84%E4%BB%B68.png" alt="img"></p>
-<p>兄弟组件间就不互相调用对方的方法了，多次使用的话就单独封装成一个方法在独立的js格式文件中，到时直接调用。</p>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>butterfly主题修改字体</title>
-    <url>/2023/06/07/butterfly%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93/</url>
-    <content><![CDATA[<h1 id="新建css文件"><a href="#新建css文件" class="headerlink" title="新建css文件"></a>新建css文件</h1><p>引入css改变页面的样式，推荐在一个自己新建目录创建。有人选择在主题文件夹下找到css文件夹(\themes\Butterfly\source\css)，这样系统升级可能会把自己的代码覆盖掉。本人是在myblog\source\css新建一个font.css文件(文件名可以自取)。</p>
-<p>目录截图：<br><img src="/../images/directory.png"></p>
-<p>内容如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">    font-family: &#x27;UnBatang&#x27;;</span><br><span class="line">    font-display: swap;</span><br><span class="line">    src: url(&#x27;../font/UnBatang.ttf&#x27;) format(&quot;truetype&quot;);  </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>..&#x2F;font&#x2F;UnBatang.ttf 为字体路径，可以支持放在你的 CDN 里哦，后面的 format 是必须字段，转换字体格式，font-display: swap; 可以保证我们的字体文件在没有加载完成之前文字使用默认字体。</p>
-<p>这里存放的本地路径为 : &#x2F;css&#x2F;font.css</p>
-<p>其他格式字体的常见示例：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: &#x27;webfont&#x27;;</span><br><span class="line">  font-display: swap;</span><br><span class="line">  src: url(&#x27;.eot&#x27;);  </span><br><span class="line">  src: url(&#x27;.eot&#x27;) format(&#x27;embedded-opentype&#x27;),  /* IE6-IE8 */</span><br><span class="line">       url(&#x27;.woff2&#x27;) format(&#x27;woff2&#x27;),</span><br><span class="line">       url(&#x27;.woff&#x27;) format(&#x27;woff&#x27;),  /*chrome、firefox */</span><br><span class="line">       url(&#x27;.ttf&#x27;) format(&#x27;truetype&#x27;),  /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/</span><br><span class="line">       url(&#x27;.svg&#x27;) format(&#x27;svg&#x27;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，font-family 字段是可以自己定义的哦</p>
-<h1 id="引入css文件"><a href="#引入css文件" class="headerlink" title="引入css文件"></a>引入css文件</h1><p>在 _config.butterfly.yml 里修改 inject ，将刚才创建的 css 文件引入：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;/css/font.css&quot;&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/../images/font%E6%A0%B7%E5%BC%8F.png"></p>
-<p>然后修改 butterfly.yml 中的 font-family ：<br><img src="/../images/%E8%AE%BE%E7%BD%AEfont%E5%AD%97%E4%BD%93.png"></p>
-<p>第一个就是全局字体，第二个是代码块的字体，你可以同时在刚才的那个 css 文件里引入两个字体文件哦，然后吧 font-family 的值写在这里就好了呀。</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>字体确实变了，速度也快了，但是风格和整体网站还有有点出入，这其实相当于跨上了”魔改”的第一步。</p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo博客运行命令</title>
-    <url>/2023/07/01/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<p>运行  </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npx hexo clean</span><br><span class="line">npx hexo g</span><br><span class="line">npx hexo s</span><br><span class="line">```  </span><br><span class="line">使用hexo-admin编辑文档  </span><br><span class="line">首先进入hexo创建的博客项目的根目录下，执行</span><br><span class="line"> `npm install --save hexo-admin`  </span><br><span class="line">mac可能需要root权限，前面加个sudo 就可以了。如果报错缺少组件，则缺少什么安装什么，npm install 加缺少的组件。</span><br><span class="line"></span><br><span class="line">运行下列命令启动hexo-admin ：</span><br><span class="line">`npx hexo server -d`  </span><br><span class="line">打开 http://localhost:4000/admin/ 就可以访问到hexo-admin管理页面了。</span><br><span class="line"></span><br><span class="line">自动部署自github上  </span><br><span class="line">`npx hexo d`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Quick Start</span><br><span class="line"></span><br><span class="line">### Create a new post</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>markdown添加代码段</title>
-    <url>/2023/07/06/markdown%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81%E6%AE%B5/</url>
-    <content><![CDATA[<h2 id="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"><a href="#格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行" class="headerlink" title="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"></a>格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行</h2><p>例如：<br><img src="/images/ES6/markdown%E4%BB%A3%E7%A0%81%E6%AE%B5%E5%86%99%E6%B3%95.png" alt="代码段示例"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 常用语言及关键字</span><br><span class="line">语言	            关键字</span><br><span class="line">C	            cpp , c</span><br><span class="line">Java	            java</span><br><span class="line">Python	            py , python</span><br><span class="line">PHP	            php</span><br><span class="line">Shell	            bash , shell</span><br><span class="line">C#	            c# , c-sharp , csharp</span><br><span class="line">CSS	            css</span><br><span class="line">JavaScript	    js , jscript , javascript</span><br><span class="line">text	            text , plain</span><br><span class="line">XML	            xml , xhtml , xslt , html</span><br><span class="line">R	            r , s , splus</span><br><span class="line">GO	            go , golang</span><br><span class="line">AppleScript	    applescript</span><br><span class="line">ActionScript <span class="number">3.0</span>    actionscript3 , as3</span><br><span class="line">ColdFusion	    coldfusion , cf</span><br><span class="line">Delphi	            delphi , pascal , pas</span><br><span class="line">diff&amp;patch	    diff patch</span><br><span class="line">Erlang	            erl , erlang</span><br><span class="line">Groovy	            groovy</span><br><span class="line">JavaFX	            jfx , javafx</span><br><span class="line">Perl	            perl , pl , Perl</span><br><span class="line">Ruby	            ruby , rails , ror , rb</span><br><span class="line">SASS&amp;SCSS	    sass , scss</span><br><span class="line">Scala	            scala</span><br><span class="line">SQL	            sql</span><br><span class="line">Visual Basic	    vb , vbnet</span><br><span class="line">Objective C	    objc , obj-c</span><br><span class="line">F#	            f# f-sharp , fsharp</span><br><span class="line">matlab	            matlab</span><br><span class="line">swift	            swift</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>通用</category>
-      </categories>
   </entry>
   <entry>
     <title>butterfly添加本地搜索</title>
@@ -911,8 +878,93 @@
       </categories>
   </entry>
   <entry>
+    <title>hexo博客运行命令</title>
+    <url>/2023/07/01/hexo%E4%B8%BB%E9%A2%98%E8%BF%90%E8%A1%8C%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<p>运行  </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npx hexo clean</span><br><span class="line">npx hexo g</span><br><span class="line">npx hexo s</span><br><span class="line">```  </span><br><span class="line">使用hexo-admin编辑文档  </span><br><span class="line">首先进入hexo创建的博客项目的根目录下，执行</span><br><span class="line"> `npm install --save hexo-admin`  </span><br><span class="line">mac可能需要root权限，前面加个sudo 就可以了。如果报错缺少组件，则缺少什么安装什么，npm install 加缺少的组件。</span><br><span class="line"></span><br><span class="line">运行下列命令启动hexo-admin ：</span><br><span class="line">`npx hexo server -d`  </span><br><span class="line">打开 http://localhost:4000/admin/ 就可以访问到hexo-admin管理页面了。</span><br><span class="line"></span><br><span class="line">自动部署自github上  </span><br><span class="line">`npx hexo d`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## Quick Start</span><br><span class="line"></span><br><span class="line">### Create a new post</span><br><span class="line"></span><br><span class="line">``` bash</span><br><span class="line">$ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>markdown添加代码段</title>
+    <url>/2023/07/06/markdown%E6%B7%BB%E5%8A%A0%E4%BB%A3%E7%A0%81%E6%AE%B5/</url>
+    <content><![CDATA[<h2 id="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"><a href="#格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行" class="headerlink" title="格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行"></a>格式：开头三个反引号跟上语言关键字，结尾三个反引号，各独占一行</h2><p>例如：<br><img src="/images/ES6/markdown%E4%BB%A3%E7%A0%81%E6%AE%B5%E5%86%99%E6%B3%95.png" alt="代码段示例"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">### 常用语言及关键字</span><br><span class="line">语言	            关键字</span><br><span class="line">C	            cpp , c</span><br><span class="line">Java	            java</span><br><span class="line">Python	            py , python</span><br><span class="line">PHP	            php</span><br><span class="line">Shell	            bash , shell</span><br><span class="line">C#	            c# , c-sharp , csharp</span><br><span class="line">CSS	            css</span><br><span class="line">JavaScript	    js , jscript , javascript</span><br><span class="line">text	            text , plain</span><br><span class="line">XML	            xml , xhtml , xslt , html</span><br><span class="line">R	            r , s , splus</span><br><span class="line">GO	            go , golang</span><br><span class="line">AppleScript	    applescript</span><br><span class="line">ActionScript <span class="number">3.0</span>    actionscript3 , as3</span><br><span class="line">ColdFusion	    coldfusion , cf</span><br><span class="line">Delphi	            delphi , pascal , pas</span><br><span class="line">diff&amp;patch	    diff patch</span><br><span class="line">Erlang	            erl , erlang</span><br><span class="line">Groovy	            groovy</span><br><span class="line">JavaFX	            jfx , javafx</span><br><span class="line">Perl	            perl , pl , Perl</span><br><span class="line">Ruby	            ruby , rails , ror , rb</span><br><span class="line">SASS&amp;SCSS	    sass , scss</span><br><span class="line">Scala	            scala</span><br><span class="line">SQL	            sql</span><br><span class="line">Visual Basic	    vb , vbnet</span><br><span class="line">Objective C	    objc , obj-c</span><br><span class="line">F#	            f# f-sharp , fsharp</span><br><span class="line">matlab	            matlab</span><br><span class="line">swift	            swift</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>volta安装及使用</title>
+    <url>/2023/07/12/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
+<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
+<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
+<ul>
+<li>volta</li>
+<li>volta-migrate</li>
+<li>volta-shim</li>
+</ul>
+<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
+<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
+<p>大功告成</p>
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+      <tags>
+        <tag>web前端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>volta管理node版本</title>
+    <url>/2023/07/18/volta%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC/</url>
+    <content><![CDATA[<h2 id="为啥使用volta或nvm来管理node版本呢？"><a href="#为啥使用volta或nvm来管理node版本呢？" class="headerlink" title="为啥使用volta或nvm来管理node版本呢？"></a>为啥使用volta或nvm来管理node版本呢？</h2><h3 id="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案"><a href="#假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案" class="headerlink" title="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:"></a>假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:</h3><ol>
+<li>本地下载多个node包，一定是zip格式的才可以，但是环境变量中的node名称不变，所以每次，只需要将node本地的包名修改即可。举例：</li>
+</ol>
+<p><strong>环境变量path：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br></pre></td></tr></table></figure>
+<p><strong>本地node包：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br><span class="line">c:x\node-16</span><br><span class="line">c:x\node-18</span><br></pre></td></tr></table></figure>
+<p>那么当前我想使用18怎么办？只需要将node18本地包名称改为node14即可，所以根本原则就是只需要把你的目标版本名称，改为path中对应的node版本及名称即可。</p>
+<ol start="2">
+<li>使用votal<br>nvm我都不直接推荐各位了，理由就是我更喜欢valta，至于它和nvm的异同，大家感兴趣自行查阅。因为我用的是windows，所以就讲如何在windows下安装以及使用了。</li>
+</ol>
+<ul>
+<li>安装volta（卸载nvm的前提下）</li>
+<li>在项目根目录【package.json所在目录】下：</li>
+</ul>
+<h2 id="用volta安装node。"><a href="#用volta安装node。" class="headerlink" title="用volta安装node。"></a>用volta安装node。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta install xxx</span><br></pre></td></tr></table></figure>
+<h2 id="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"><a href="#用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。" class="headerlink" title="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"></a>用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta list</span><br></pre></td></tr></table></figure>
+<h2 id="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："><a href="#用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：" class="headerlink" title="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："></a>用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta pin node@16.20.1</span><br><span class="line">volta pin yarn@4.0.0-rc.46</span><br></pre></td></tr></table></figure>
+<h2 id="若成功，则package-json中有此类标识："><a href="#若成功，则package-json中有此类标识：" class="headerlink" title="若成功，则package.json中有此类标识："></a>若成功，则package.json中有此类标识：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;volta&quot;: &#123;</span><br><span class="line">  &quot;node&quot;: &quot;16.20.1&quot;,</span><br><span class="line">  &quot;yarn&quot;: &quot;4.0.0-rc.46&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行项目。注意执行项目和volta无任何关系。依然以package.json中定义的指令为准。</p>
+]]></content>
+      <categories>
+        <category>通用</category>
+      </categories>
+  </entry>
+  <entry>
     <title>mock的使用</title>
-    <url>/2023/09/15/mock%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <url>/2023/08/05/mock%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><a href="http://mockjs.com/0.1/"><strong>mock文档地址</strong></a></p>
 <h2 id="一、小程序"><a href="#一、小程序" class="headerlink" title="一、小程序"></a>一、小程序</h2><p><strong>微信小程序的 MockData（模拟数据）可以让开发者在不依赖后端服务的情况下，快速进行前端开发和调试。</strong></p>
 <p><strong>建立和使用 MockData 的步骤如下：</strong></p>
@@ -982,122 +1034,6 @@
       <categories>
         <category>通用</category>
       </categories>
-  </entry>
-  <entry>
-    <title>volta安装及使用</title>
-    <url>/2023/07/12/volta%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="Volta作用"><a href="#Volta作用" class="headerlink" title="Volta作用"></a>Volta作用</h1><p>类似nvm，但是不只是管理node的版本，还可以管理其他一些前端的命令行工具的版本。具体内容可以直接看官网：<a href="https://volta.sh/">https://volta.sh/</a><br>下面是官网介绍页的一个截图。<br><img src="https://cdn.orzzone.com/volta-introduction.png"></p>
-<h1 id="Volta安装"><a href="#Volta安装" class="headerlink" title="Volta安装"></a>Volta安装</h1><h2 id="Volta官方安装方法"><a href="#Volta官方安装方法" class="headerlink" title="Volta官方安装方法"></a>Volta官方安装方法</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ curl https://get.volta.sh | bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="Volta非官方安装方法"><a href="#Volta非官方安装方法" class="headerlink" title="Volta非官方安装方法"></a>Volta非官方安装方法</h2><p>如果按照官方的安装方法，经常会出现由于网络等各种原因导致无法成功安装的情况，这时候我们可以手动安装。先直接通过浏览器访问“<a href="https://get.volta.sh”链接：">https://get.volta.sh”链接：</a><br><img src="https://cdn.orzzone.com/get-volta-sh.png"><br>上图第一个红圈里的内容就是告诉这个脚本的作用根据用户的系统判断应该要下载哪个版本的Volta构建产物，然后修改用户的profile文件让用户可以通过命令行方便的使用volta。<br>我们直接访问上图中画红线的地址：<a href="https://github.com/volta-cli/volta/releases%E3%80%82">https://github.com/volta-cli/volta/releases。</a><br><img src="https://cdn.orzzone.com/volta-releases.png"></p>
-<p>我们手动下载volta-1.0.8-macos.tar.gz，解压得到3个文件：</p>
-<ul>
-<li>volta</li>
-<li>volta-migrate</li>
-<li>volta-shim</li>
-</ul>
-<p>查看用户的$PATH目录：<br><img src="https://cdn.orzzone.com/echo-path.png"></p>
-<p>把他们拷贝到用户的一个PATH目录下（比如&#x2F;usr&#x2F;local&#x2F;bin），然后检测volta命令是否可用：<br><img src="https://cdn.orzzone.com/volta-version.png"></p>
-<p>大功告成</p>
-]]></content>
-      <categories>
-        <category>通用</category>
-      </categories>
-      <tags>
-        <tag>web前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>volta管理node版本</title>
-    <url>/2023/07/18/volta%E7%AE%A1%E7%90%86node%E7%89%88%E6%9C%AC/</url>
-    <content><![CDATA[<h2 id="为啥使用volta或nvm来管理node版本呢？"><a href="#为啥使用volta或nvm来管理node版本呢？" class="headerlink" title="为啥使用volta或nvm来管理node版本呢？"></a>为啥使用volta或nvm来管理node版本呢？</h2><h3 id="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案"><a href="#假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案" class="headerlink" title="假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:"></a>假如你需要同时维护多个node项目，那你怎么办呢？下面说几个可行的方案:</h3><ol>
-<li>本地下载多个node包，一定是zip格式的才可以，但是环境变量中的node名称不变，所以每次，只需要将node本地的包名修改即可。举例：</li>
-</ol>
-<p><strong>环境变量path：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br></pre></td></tr></table></figure>
-<p><strong>本地node包：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">c:x\node-14</span><br><span class="line">c:x\node-16</span><br><span class="line">c:x\node-18</span><br></pre></td></tr></table></figure>
-<p>那么当前我想使用18怎么办？只需要将node18本地包名称改为node14即可，所以根本原则就是只需要把你的目标版本名称，改为path中对应的node版本及名称即可。</p>
-<ol start="2">
-<li>使用votal<br>nvm我都不直接推荐各位了，理由就是我更喜欢valta，至于它和nvm的异同，大家感兴趣自行查阅。因为我用的是windows，所以就讲如何在windows下安装以及使用了。</li>
-</ol>
-<ul>
-<li>安装volta（卸载nvm的前提下）</li>
-<li>在项目根目录【package.json所在目录】下：</li>
-</ul>
-<h2 id="用volta安装node。"><a href="#用volta安装node。" class="headerlink" title="用volta安装node。"></a>用volta安装node。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta install xxx</span><br></pre></td></tr></table></figure>
-<h2 id="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"><a href="#用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。" class="headerlink" title="用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。"></a>用volta查询查看当前环境依赖，顺带可以查到本项目已经安装的依赖。</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta list</span><br></pre></td></tr></table></figure>
-<h2 id="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："><a href="#用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：" class="headerlink" title="用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则："></a>用volta指定本项目的各类依赖环境，比如我想指定node和yarn，则：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">volta pin node@16.20.1</span><br><span class="line">volta pin yarn@4.0.0-rc.46</span><br></pre></td></tr></table></figure>
-<h2 id="若成功，则package-json中有此类标识："><a href="#若成功，则package-json中有此类标识：" class="headerlink" title="若成功，则package.json中有此类标识："></a>若成功，则package.json中有此类标识：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&quot;volta&quot;: &#123;</span><br><span class="line">  &quot;node&quot;: &quot;16.20.1&quot;,</span><br><span class="line">  &quot;yarn&quot;: &quot;4.0.0-rc.46&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>执行项目。注意执行项目和volta无任何关系。依然以package.json中定义的指令为准。</p>
-]]></content>
-      <categories>
-        <category>通用</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vue路由相关</title>
-    <url>/2023/09/16/vue%E8%B7%AF%E7%94%B1%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h1 id="vue路由相关"><a href="#vue路由相关" class="headerlink" title="vue路由相关"></a>vue路由相关</h1><p>路由示例👇</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@desc</span> 路由配置</span></span><br><span class="line"><span class="comment">* meta: &#123;</span></span><br><span class="line"><span class="comment">  *  showHeaderTips: true 显示消息栏 默认不配置不展示（pc/abo为一种展示方式 foa为一种展示方式 网服为一种展示方式）</span></span><br><span class="line"><span class="comment">  *  showHeaderSearch: true 显示搜索 默认不配置不展示</span></span><br><span class="line"><span class="comment">  *  iconNames: Array 传递给CA的icon集合， 需要哪些icon，则配置哪些icon, 确定当前页面不需要icon 配置空数组， 对页面不清晰的</span></span><br><span class="line"><span class="comment">  *  &#x27;share&#x27; - 分享icon,</span></span><br><span class="line"><span class="comment">  *  &#x27;plp&#x27; - 分类页icon,</span></span><br><span class="line"><span class="comment">  *  &#x27;miniCart&#x27; - 购物车icon,</span></span><br><span class="line"><span class="comment">  *  &#x27;ecHome&#x27; - 电商首页icon,</span></span><br><span class="line"><span class="comment">  *  &#x27;mine&#x27; - 我的icon</span></span><br><span class="line"><span class="comment">  *  headerFixed: true, // 使用固定定位显示 默认不配置不fixed</span></span><br><span class="line"><span class="comment">  * &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> <span class="title class_">VueRouter</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    <span class="comment">// 路由一：</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: &quot;index&quot; */</span> <span class="string">&#x27;../views/index/index.vue&#x27;</span>),</span><br><span class="line">      <span class="comment">// 配置项</span></span><br><span class="line">      <span class="attr">meta</span>: &#123;</span><br><span class="line">        <span class="attr">iconNames</span>: [<span class="string">&#x27;share&#x27;</span>, <span class="string">&#x27;plp&#x27;</span>, <span class="string">&#x27;miniCart&#x27;</span>], <span class="comment">// 当前页面在CA环境下 CA顶部的icon</span></span><br><span class="line">        <span class="attr">showHeaderTips</span>: <span class="literal">true</span>, <span class="comment">// 展示消息栏</span></span><br><span class="line">        <span class="attr">showHeaderSearch</span>: <span class="literal">true</span>, <span class="comment">// 展示搜索栏</span></span><br><span class="line">        <span class="attr">headerFixed</span>: <span class="literal">true</span>, <span class="comment">// 头部是否定位展示</span></span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;安利云购&#x27;</span>,</span><br><span class="line">        <span class="attr">floatData</span>: <span class="string">&#x27;HOME_PAGE&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 路由二：</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/foo&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: <span class="title class_">Foo</span>,</span><br><span class="line">      <span class="attr">children</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">path</span>: <span class="string">&#x27;bar&#x27;</span>,</span><br><span class="line">          <span class="attr">component</span>: <span class="title class_">Bar</span>,</span><br><span class="line">          <span class="comment">// a meta field</span></span><br><span class="line">          <span class="comment">// 路由元信息</span></span><br><span class="line">          <span class="attr">meta</span>: &#123; <span class="attr">requiresAuth</span>: <span class="literal">true</span> &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 路由三</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 路由重定向————redirect</span></span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/c/:code&#x27;</span>,</span><br><span class="line">      <span class="attr">redirect</span>: <span class="function">(<span class="params">to</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; params &#125; = to;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;/productList?code=&#x27;</span> + params.<span class="property">code</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="一、meta"><a href="#一、meta" class="headerlink" title="一、meta"></a>一、meta</h2><h3 id="❓-什么是meta"><a href="#❓-什么是meta" class="headerlink" title="❓ 什么是meta"></a>❓ 什么是meta</h3><p>简单来说就是路由元信息，也就是每个路由身上携带的信息</p>
-<h3 id="🎨-meta的作用"><a href="#🎨-meta的作用" class="headerlink" title="🎨 meta的作用"></a>🎨 meta的作用</h3><p><a href="https://so.csdn.net/so/search?q=vue-router&spm=1001.2101.3001.7020">vue-router</a>路由元信息说白了就是通过meta对象中的一些属性来判断当前路由是否需要进一步处理，如果需要处理，按照自己想要的效果进行处理即可。</p>
-<h3 id="️⃣如何访问这个meta字段呢？"><a href="#️⃣如何访问这个meta字段呢？" class="headerlink" title="#️⃣如何访问这个meta字段呢？"></a>#️⃣如何访问这个meta字段呢？</h3><h4 id="场景一（一般情况）："><a href="#场景一（一般情况）：" class="headerlink" title="场景一（一般情况）："></a>场景一（一般情况）：</h4><p>在router.js中给路由的meta对象添加属性时，可以使用$route.meta.xxx来获取这个属性的状态</p>
-<h4 id="场景二（存在多级路由）："><a href="#场景二（存在多级路由）：" class="headerlink" title="场景二（存在多级路由）："></a>场景二（存在多级路由）：</h4><p>首先，我们称呼 routes 配置中的每个路由对象为 路由记录。路由记录可以是嵌套的，因此，当一个路由匹配成功后，他可能匹配多个路由记录。</p>
-<p>例如示例代码中的路由二，&#x2F;foo&#x2F;bar 这个 URL 将会匹配父路由记录以及子路由记录。</p>
-<p>一个路由匹配到的所有路由记录会暴露为 $route 对象 (还有在导航守卫中的路由对象) 的 $route.matched 数组。此时$route.matched对应的数组中有两项数据分别是&#x2F;foo路径下的路由和&#x2F;foo&#x2F;bar路径下所对应的路由。有多少级路由就会对应生成多少级路由下的路由。因此，我们需要遍历 $route.matched 来检查路由记录中的 meta 字段。</p>
-<p>下面例子展示在全局导航守卫中检查元字段：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.<span class="title function_">beforeEach</span>(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (to.<span class="property">matched</span>.<span class="title function_">some</span>(<span class="function"><span class="params">record</span> =&gt;</span> record.<span class="property">meta</span>.<span class="property">requiresAuth</span>)) &#123;</span><br><span class="line">    <span class="comment">// this route requires auth, check if logged in</span></span><br><span class="line">    <span class="comment">// if not, redirect to login page.</span></span><br><span class="line">    <span class="keyword">if</span> (!auth.<span class="title function_">loggedIn</span>()) &#123;</span><br><span class="line">      <span class="title function_">next</span>(&#123;</span><br><span class="line">        <span class="attr">path</span>: <span class="string">&#x27;/login&#x27;</span>,</span><br><span class="line">        <span class="attr">query</span>: &#123; <span class="attr">redirect</span>: to.<span class="property">fullPath</span> &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title function_">next</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">next</span>() <span class="comment">// 确保一定要调用 next()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>参考链接：<a href="https://blog.csdn.net/m0_67394230/article/details/123368436">https://blog.csdn.net/m0_67394230/article/details/123368436</a></p>
-<p>   <a href="https://juejin.cn/post/7098605987925327902">https://juejin.cn/post/7098605987925327902</a></p>
-<h2 id="二、redirect（重定向）"><a href="#二、redirect（重定向）" class="headerlink" title="二、redirect（重定向）"></a>二、redirect（重定向）</h2><p>重定向也是通过 routes 配置来完成，下面例子是从 &#x2F;home 重定向到 &#x2F;：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [&#123; <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>, <span class="attr">redirect</span>: <span class="string">&#x27;/&#x27;</span> &#125;]</span><br></pre></td></tr></table></figure>
-
-<p>重定向的目标也可以是一个命名的路由：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [&#123; <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>, <span class="attr">redirect</span>: &#123; <span class="attr">name</span>: <span class="string">&#x27;homepage&#x27;</span> &#125; &#125;]</span><br></pre></td></tr></table></figure>
-
-<p>甚至是一个方法，动态返回重定向目标：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// /search/screens -&gt; /search?q=screens</span></span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/search/:searchText&#x27;</span>,</span><br><span class="line">    <span class="attr">redirect</span>: <span class="function"><span class="params">to</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 方法接收目标路由作为参数</span></span><br><span class="line">      <span class="comment">// return 重定向的字符串路径/路径对象</span></span><br><span class="line">      <span class="keyword">return</span> &#123; <span class="attr">path</span>: <span class="string">&#x27;/search&#x27;</span>, <span class="attr">query</span>: &#123; <span class="attr">q</span>: to.<span class="property">params</span>.<span class="property">searchText</span> &#125; &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/search&#x27;</span>,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p>以及示例代码中路由三的写法</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;/c/:code&#x27;</span>,</span><br><span class="line">  <span class="attr">redirect</span>: <span class="function">(<span class="params">to</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; params &#125; = to;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;/productList?code=&#x27;</span> + params.<span class="property">code</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、相对重定向"><a href="#三、相对重定向" class="headerlink" title="三、相对重定向"></a>三、相对重定向</h2><p>重定向到相对位置：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 将总是把/users/123/posts重定向到/users/123/profile。</span></span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/users/:id/posts&#x27;</span>,</span><br><span class="line">    <span class="attr">redirect</span>: <span class="function"><span class="params">to</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 该函数接收目标路由作为参数</span></span><br><span class="line">      <span class="comment">// 相对位置不以`/`开头</span></span><br><span class="line">      <span class="comment">// 或 &#123; path: &#x27;profile&#x27;&#125;</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;profile&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<h2 id="四、路由传参"><a href="#四、路由传参" class="headerlink" title="四、路由传参"></a>四、路由传参</h2><h3 id="路由传参：params"><a href="#路由传参：params" class="headerlink" title="路由传参：params"></a>路由传参：params</h3><h4 id="传"><a href="#传" class="headerlink" title="传"></a>传</h4><p>1.动态路由匹配（路由配置里写）</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">name</span>:<span class="string">&quot;user&quot;</span>, <span class="attr">path</span>: <span class="string">&#x27;/user/:id&#x27;</span>, <span class="attr">component</span>: <span class="title class_">User</span> &#125;   <span class="comment">//id：相当于声明了变量</span></span><br></pre></td></tr></table></figure>
-
-<p>2.跳转时传参</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>)、跳转时，使用字符串</span><br><span class="line"><span class="comment">//声明式</span></span><br><span class="line">&lt;router-link to=<span class="string">&quot;/user/01001&quot;</span>&gt;用户<span class="number">01001</span>的信息&lt;/router-link&gt;</span><br><span class="line"><span class="comment">//编程式</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(<span class="string">&quot;/user/01001&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>）、跳转时，使用对象</span><br><span class="line"><span class="comment">//声明式： 命名的路由，同时传参</span></span><br><span class="line">&lt;router-link :to=<span class="string">&quot;&#123; name: &#x27;user&#x27;, params: &#123; id: &#x27;01001&#x27; &#125;&#125;&quot;</span>&gt;<span class="title class_">User</span>&lt;/router-link&gt;</span><br><span class="line"><span class="comment">//编程式：</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;user&#x27;</span>, <span class="attr">params</span>: &#123; <span class="attr">id</span>: <span class="string">&#x27;01001&#x27;</span> &#125;&#125;)</span><br></pre></td></tr></table></figure>
-
-<h4 id="接"><a href="#接" class="headerlink" title="接"></a>接</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//模板里的写法：</span></span><br><span class="line">$route.<span class="property">params</span>.参数名</span><br><span class="line"></span><br><span class="line"><span class="comment">//脚本里的写法:</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">params</span>.参数名</span><br></pre></td></tr></table></figure>
-
-<h3 id="路由传参：query"><a href="#路由传参：query" class="headerlink" title="路由传参：query"></a>路由传参：query</h3><h4 id="传-1"><a href="#传-1" class="headerlink" title="传"></a>传</h4><p>1.路由配置不用改（不用动态路由匹配）</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">path</span>: <span class="string">&#x27;/user&#x27;</span>, <span class="attr">component</span>: <span class="title class_">User</span> &#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.跳转时，使用 path</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//跳转时，使用字符串</span></span><br><span class="line"><span class="comment">//声明式： </span></span><br><span class="line">&lt;router-link to=<span class="string">&quot;/Reg?userid=007&amp;username=mjl&quot;</span>&gt;<span class="title class_">User</span>&lt;/router-link&gt;</span><br><span class="line"><span class="comment">//编程式：</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(<span class="string">&quot;/Reg?userid=007&amp;username=mjl&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//跳转时，使用对象：</span></span><br><span class="line"><span class="comment">//声明式： </span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;&#123; path: &#x27;/user&#x27;, query: &#123; id: &#x27;01001&#x27; &#125;&#125;&quot;</span>&gt;</span>User<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></span><br><span class="line"><span class="comment">//编程式：</span></span><br><span class="line">$router.<span class="title function_">push</span>(&#123; <span class="attr">path</span>: <span class="string">&#x27;/user&#x27;</span>, <span class="attr">query</span>: &#123; <span class="attr">id</span>: <span class="string">&#x27;01001&#x27;</span> &#125;&#125;)</span><br><span class="line"></span><br><span class="line">注意：如果提供了 path，那么params 会被忽略</span><br><span class="line"><span class="comment">// 带查询参数，变成 /user?id=01001</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">params和query的对象写法的区别：</span><br><span class="line">name 对应params</span><br><span class="line">path对应query</span><br></pre></td></tr></table></figure>
-
-<h4 id="接-1"><a href="#接-1" class="headerlink" title="接"></a>接</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//模板里的写法：</span></span><br><span class="line">$route.<span class="property">query</span>.参数名</span><br><span class="line"></span><br><span class="line"><span class="comment">//脚本里的写法:</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">query</span>.参数名</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用场景的区别：</span><br><span class="line">query：传递多个参数时，query方式对应的地址栏上好阅读。</span><br><span class="line">params：传递一个参数时</span><br></pre></td></tr></table></figure>
-
-<h3 id="路由传参和props"><a href="#路由传参和props" class="headerlink" title="路由传参和props"></a>路由传参和props</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> 一个组件在项目中，有两种使用方式（组件显示在浏览器上）：</span><br><span class="line">   1、标签的方式，外部给组件传数据，用props   </span><br><span class="line">   2、使用路由跳转的方式，外部给组件传数据，用params或者query。</span><br><span class="line">     如果， 一个组件需要从外部传入数据， 并且在项目中，这两种方式的使用都会出现，那么，在组件内部就需要适应这两种情况。</span><br><span class="line"> 如何使用 `props` 属性将组件和路由解耦： </span><br><span class="line">`props` 被设置为 `true`，`route.params` 将会被设置为组件属性。 </span><br></pre></td></tr></table></figure>
-
-<h4 id="路由配置："><a href="#路由配置：" class="headerlink" title="路由配置："></a>路由配置：</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">path</span>: <span class="string">&#x27;/user/:id&#x27;</span>, <span class="attr">component</span>: <span class="title class_">User</span>, <span class="attr">props</span>: <span class="literal">true</span> &#125;,</span><br></pre></td></tr></table></figure>
-
-<h4 id="组件："><a href="#组件：" class="headerlink" title="组件："></a>组件：</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">User</span> = &#123;</span><br><span class="line">  <span class="attr">props</span>: [<span class="string">&#x27;id&#x27;</span>],</span><br><span class="line">  <span class="attr">template</span>: <span class="string">&#x27;&lt;div&gt;User &#123;&#123; id &#125;&#125;&lt;/div&gt;&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
   </entry>
   <entry>
     <title>vue-router导航守卫</title>
@@ -1214,7 +1150,7 @@
   </entry>
   <entry>
     <title>watch监听器三种监听方式</title>
-    <url>/2023/09/07/watch%E7%9B%91%E5%90%AC%E5%99%A8%E4%B8%89%E7%A7%8D%E7%9B%91%E5%90%AC%E6%96%B9%E5%BC%8F/</url>
+    <url>/2023/08/02/watch%E7%9B%91%E5%90%AC%E5%99%A8%E4%B8%89%E7%A7%8D%E7%9B%91%E5%90%AC%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h3 id="1、普通监听（无法监听到第一次绑定的变化）"><a href="#1、普通监听（无法监听到第一次绑定的变化）" class="headerlink" title="1、普通监听（无法监听到第一次绑定的变化）"></a>1、普通监听（无法监听到第一次绑定的变化）</h3><p>这样使用watch时有一个特点，就是当值第一次绑定的时候，不会执行监听函数，只有值发生改变才会执行。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//当text发生变化时触发</span></span><br><span class="line"><span class="attr">watch</span>: &#123;</span><br><span class="line">    <span class="title function_">text</span>(<span class="params">newVal, oldVal</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(newVal)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="2、普通监听（可以监听到第一次绑定的变化）"><a href="#2、普通监听（可以监听到第一次绑定的变化）" class="headerlink" title="2、普通监听（可以监听到第一次绑定的变化）"></a>2、普通监听（可以监听到第一次绑定的变化）</h3><p>给 text 绑定了一个handler方法，之前我们写的 watch 方法其实默认写的就是这个handler，Vue.js会去处理这个逻辑，最终编译出来其实就是这个handler。</p>
@@ -1232,89 +1168,72 @@
       </tags>
   </entry>
   <entry>
-    <title>【微信小程序】生命周期</title>
-    <url>/2023/09/16/%E3%80%90%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E3%80%91%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
-    <content><![CDATA[<h3 id="什么是生命周期？"><a href="#什么是生命周期？" class="headerlink" title="什么是生命周期？"></a>什么是生命周期？</h3><p>生命周期是指一个小程序从创建到销毁的一系列过程、</p>
-<h3 id="小程序的三种生命周期"><a href="#小程序的三种生命周期" class="headerlink" title="小程序的三种生命周期"></a>小程序的三种生命周期</h3><p>在小程序中 ，通过App()来注册一个小程序 ，通过Page()来注册一个页面，通过Component()来注册一个组件</p>
-<h3 id="生命周期简述"><a href="#生命周期简述" class="headerlink" title="生命周期简述"></a>生命周期简述</h3><p><strong>全局</strong></p>
-<ol>
-<li>用户首次打开小程序，触发 onLaunch 方法（全局只触发一次）。</li>
-<li>小程序初始化完成后，触发 onShow 方法，监听小程序显示。</li>
-<li>小程序从前台进入后台，触发 onHide 方法。</li>
-<li>小程序从后台进入前台显示，触发 onShow 方法。</li>
-<li>小程序后台运行一定时间，或系统资源占用过高，会被销毁。</li>
-</ol>
-<p>​      全局的 getApp() 函数可以用来获取到小程序 App 实例。</p>
-<p><strong>页面</strong></p>
-<ul>
-<li>小程序注册完成后，加载页面，触发onLoad方法。</li>
-<li>页面载入后触发onShow方法，显示页面。</li>
-<li>首次显示页面，会触发onReady方法，渲染页面元素和样式，一个页面只会调用一次。</li>
-<li>当小程序后台运行或跳转到其他页面时，触发onHide方法。</li>
-<li>当小程序有后台进入到前台运行或重新进入页面时，触发onShow方法。</li>
-<li>当使用重定向方法wx.redirectTo(object)或关闭当前页返回上一页wx.navigateBack()，触发onUnload。</li>
-</ul>
-<h3 id="生命周期详解"><a href="#生命周期详解" class="headerlink" title="生命周期详解"></a>生命周期详解</h3><h4 id="1-小程序应用的生命周期"><a href="#1-小程序应用的生命周期" class="headerlink" title="1. 小程序应用的生命周期"></a>1. 小程序应用的生命周期</h4><p>App()函数用来注册一个小程序。接受一个 Object参数，其指定小程序的生命周期回调等。App() 必须在 app.js 中调用，必须调用且只能调用一次。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">App</span>(&#123;</span><br><span class="line">  <span class="attr">onLaunch</span>: <span class="keyword">function</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">// 监听小程序初始化。小程序初始化完成时（全局只触发一次）</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onShow</span>: <span class="keyword">function</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">// 监听小程序显示。小程序启动，或从后台进入前台显示时</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onHide</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 监听小程序隐藏。小程序从前台进入后台时。</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onError</span>: <span class="keyword">function</span>(<span class="params">msg</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(msg) <span class="comment">// 错误监听函数。小程序发生脚本错误，或者 api 调用失败时触发，会带上错误信息</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onPageNotFound</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">    <span class="comment">// 页面不存在监听函数。小程序要打开的页面不存在时触发，会带上页面信息回调该函数</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">globalData</span>: <span class="string">&#x27;I am global data&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+    <title>vue路由相关</title>
+    <url>/2023/08/26/vue%E8%B7%AF%E7%94%B1%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h1 id="vue路由相关"><a href="#vue路由相关" class="headerlink" title="vue路由相关"></a>vue路由相关</h1><p>路由示例👇</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* <span class="doctag">@desc</span> 路由配置</span></span><br><span class="line"><span class="comment">* meta: &#123;</span></span><br><span class="line"><span class="comment">  *  showHeaderTips: true 显示消息栏 默认不配置不展示（pc/abo为一种展示方式 foa为一种展示方式 网服为一种展示方式）</span></span><br><span class="line"><span class="comment">  *  showHeaderSearch: true 显示搜索 默认不配置不展示</span></span><br><span class="line"><span class="comment">  *  iconNames: Array 传递给CA的icon集合， 需要哪些icon，则配置哪些icon, 确定当前页面不需要icon 配置空数组， 对页面不清晰的</span></span><br><span class="line"><span class="comment">  *  &#x27;share&#x27; - 分享icon,</span></span><br><span class="line"><span class="comment">  *  &#x27;plp&#x27; - 分类页icon,</span></span><br><span class="line"><span class="comment">  *  &#x27;miniCart&#x27; - 购物车icon,</span></span><br><span class="line"><span class="comment">  *  &#x27;ecHome&#x27; - 电商首页icon,</span></span><br><span class="line"><span class="comment">  *  &#x27;mine&#x27; - 我的icon</span></span><br><span class="line"><span class="comment">  *  headerFixed: true, // 使用固定定位显示 默认不配置不fixed</span></span><br><span class="line"><span class="comment">  * &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> <span class="title class_">VueRouter</span>(&#123;</span><br><span class="line">  <span class="attr">routes</span>: [</span><br><span class="line">    <span class="comment">// 路由一：</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: &quot;index&quot; */</span> <span class="string">&#x27;../views/index/index.vue&#x27;</span>),</span><br><span class="line">      <span class="comment">// 配置项</span></span><br><span class="line">      <span class="attr">meta</span>: &#123;</span><br><span class="line">        <span class="attr">iconNames</span>: [<span class="string">&#x27;share&#x27;</span>, <span class="string">&#x27;plp&#x27;</span>, <span class="string">&#x27;miniCart&#x27;</span>], <span class="comment">// 当前页面在CA环境下 CA顶部的icon</span></span><br><span class="line">        <span class="attr">showHeaderTips</span>: <span class="literal">true</span>, <span class="comment">// 展示消息栏</span></span><br><span class="line">        <span class="attr">showHeaderSearch</span>: <span class="literal">true</span>, <span class="comment">// 展示搜索栏</span></span><br><span class="line">        <span class="attr">headerFixed</span>: <span class="literal">true</span>, <span class="comment">// 头部是否定位展示</span></span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;安利云购&#x27;</span>,</span><br><span class="line">        <span class="attr">floatData</span>: <span class="string">&#x27;HOME_PAGE&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 路由二：</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/foo&#x27;</span>,</span><br><span class="line">      <span class="attr">component</span>: <span class="title class_">Foo</span>,</span><br><span class="line">      <span class="attr">children</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">path</span>: <span class="string">&#x27;bar&#x27;</span>,</span><br><span class="line">          <span class="attr">component</span>: <span class="title class_">Bar</span>,</span><br><span class="line">          <span class="comment">// a meta field</span></span><br><span class="line">          <span class="comment">// 路由元信息</span></span><br><span class="line">          <span class="attr">meta</span>: &#123; <span class="attr">requiresAuth</span>: <span class="literal">true</span> &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 路由三</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 路由重定向————redirect</span></span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/c/:code&#x27;</span>,</span><br><span class="line">      <span class="attr">redirect</span>: <span class="function">(<span class="params">to</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; params &#125; = to;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;/productList?code=&#x27;</span> + params.<span class="property">code</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><strong>前台、后台定义：</strong> 当用户点击左上角关闭，或者按了设备 Home 键离开微信，小程序并没有直接销毁，而是进入了后台；当再次进入微信或再次打开小程序，又会从后台进入前台。</p>
-<p><strong>应用生命周期图解：</strong></p>
-<p><img src="/../images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F1.png" alt="img"></p>
-<ol>
-<li>用户首次打开小程序，触发 onLaunch 方法（全局只触发一次）。</li>
-<li>小程序初始化完成后，触发 onShow 方法，监听小程序显示。</li>
-<li>小程序从前台进入后台，触发 onHide 方法。</li>
-<li>小程序从后台进入前台显示，触发 onShow 方法。</li>
-<li>小程序后台运行一定时间，或系统资源占用过高，会被销毁。</li>
-<li>全局的 getApp() 函数可以用来获取到小程序 App 实例。</li>
-</ol>
-<p><strong>注意：</strong></p>
-<ol>
-<li>不要在定义于 App() 内的函数中调用 getApp() ，使用 this 就可以拿到 app 实例。</li>
-<li>通过 getApp() 获取实例之后，不要私自调用生命周期函数。</li>
-</ol>
-<p>从中我们可以知道小程序的生命周期函数的调用顺序为：onLaunch&gt;onShow&gt;onHide</p>
-<h4 id="2-页面的生命周期"><a href="#2-页面的生命周期" class="headerlink" title="2. 页面的生命周期"></a>2. 页面的生命周期</h4><p>Page(Object)函数用来注册一个页面。接受一个 Object类型参数，其指定页面的初始数据、生命周期回调、事件处理函数等。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Page</span>(&#123;</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="comment">// 页面的初始数据</span></span><br><span class="line">    <span class="attr">text</span>: <span class="string">&quot;This is page data.&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onLoad</span>: <span class="keyword">function</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面加载</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onReady</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面初次渲染完成</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onShow</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面显示</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onHide</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面隐藏</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onUnload</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面卸载</span></span><br><span class="line">  &#125;,</span><br><span class="line"><span class="comment">//  ---------------以下不是生命周期钩子函数----------------</span></span><br><span class="line">  <span class="attr">onPullDownRefresh</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 监听用户下拉动作</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onReachBottom</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 页面上拉触底事件的处理函数</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onShareAppMessage</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 用户点击右上角转发</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onPageScroll</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 页面滚动触发事件的处理函数</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onResize</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 页面尺寸改变时触发</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">onTabItemTap</span>(<span class="params">item</span>) &#123;</span><br><span class="line">    <span class="comment">// 当前是 tab 页时，点击 tab 时触发</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item.<span class="property">index</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item.<span class="property">pagePath</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item.<span class="property">text</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 任意的函数，在页面的函数中用 this 可以访问</span></span><br><span class="line">  <span class="attr">viewTap</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">text</span>: <span class="string">&#x27;Set some data for updating view.&#x27;</span></span><br><span class="line">    &#125;, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// this is setData callback</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 任意数据，在页面的函数中用 this 可以访问</span></span><br><span class="line">  <span class="attr">customData</span>: &#123;</span><br><span class="line">    <span class="attr">hi</span>: <span class="string">&#x27;MINA&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="一、meta"><a href="#一、meta" class="headerlink" title="一、meta"></a>一、meta</h2><h3 id="❓-什么是meta"><a href="#❓-什么是meta" class="headerlink" title="❓ 什么是meta"></a>❓ 什么是meta</h3><p>简单来说就是路由元信息，也就是每个路由身上携带的信息</p>
+<h3 id="🎨-meta的作用"><a href="#🎨-meta的作用" class="headerlink" title="🎨 meta的作用"></a>🎨 meta的作用</h3><p><a href="https://so.csdn.net/so/search?q=vue-router&spm=1001.2101.3001.7020">vue-router</a>路由元信息说白了就是通过meta对象中的一些属性来判断当前路由是否需要进一步处理，如果需要处理，按照自己想要的效果进行处理即可。</p>
+<h3 id="️⃣如何访问这个meta字段呢？"><a href="#️⃣如何访问这个meta字段呢？" class="headerlink" title="#️⃣如何访问这个meta字段呢？"></a>#️⃣如何访问这个meta字段呢？</h3><h4 id="场景一（一般情况）："><a href="#场景一（一般情况）：" class="headerlink" title="场景一（一般情况）："></a>场景一（一般情况）：</h4><p>在router.js中给路由的meta对象添加属性时，可以使用$route.meta.xxx来获取这个属性的状态</p>
+<h4 id="场景二（存在多级路由）："><a href="#场景二（存在多级路由）：" class="headerlink" title="场景二（存在多级路由）："></a>场景二（存在多级路由）：</h4><p>首先，我们称呼 routes 配置中的每个路由对象为 路由记录。路由记录可以是嵌套的，因此，当一个路由匹配成功后，他可能匹配多个路由记录。</p>
+<p>例如示例代码中的路由二，&#x2F;foo&#x2F;bar 这个 URL 将会匹配父路由记录以及子路由记录。</p>
+<p>一个路由匹配到的所有路由记录会暴露为 $route 对象 (还有在导航守卫中的路由对象) 的 $route.matched 数组。此时$route.matched对应的数组中有两项数据分别是&#x2F;foo路径下的路由和&#x2F;foo&#x2F;bar路径下所对应的路由。有多少级路由就会对应生成多少级路由下的路由。因此，我们需要遍历 $route.matched 来检查路由记录中的 meta 字段。</p>
+<p>下面例子展示在全局导航守卫中检查元字段：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">router.<span class="title function_">beforeEach</span>(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (to.<span class="property">matched</span>.<span class="title function_">some</span>(<span class="function"><span class="params">record</span> =&gt;</span> record.<span class="property">meta</span>.<span class="property">requiresAuth</span>)) &#123;</span><br><span class="line">    <span class="comment">// this route requires auth, check if logged in</span></span><br><span class="line">    <span class="comment">// if not, redirect to login page.</span></span><br><span class="line">    <span class="keyword">if</span> (!auth.<span class="title function_">loggedIn</span>()) &#123;</span><br><span class="line">      <span class="title function_">next</span>(&#123;</span><br><span class="line">        <span class="attr">path</span>: <span class="string">&#x27;/login&#x27;</span>,</span><br><span class="line">        <span class="attr">query</span>: &#123; <span class="attr">redirect</span>: to.<span class="property">fullPath</span> &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title function_">next</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">next</span>() <span class="comment">// 确保一定要调用 next()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>从中我们可以知道小程序页面的生命周期函数的调用顺序为：onLoad&gt;onShow&gt;onReady。</li>
-<li>至于onHide函数就是当隐藏页面的时候触发。</li>
-</ul>
-<p><strong>页面生命周期图解：</strong></p>
-<p><img src="/../images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="img"></p>
-<ol>
-<li>小程序注册完成后，加载页面，触发onLoad方法。</li>
-<li>页面载入后触发onShow方法，显示页面。</li>
-<li>首次显示页面，会触发onReady方法，渲染页面元素和样式，一个页面只会调用一次。</li>
-<li>当小程序后台运行或跳转到其他页面时，触发onHide方法。</li>
-<li>当小程序有后台进入到前台运行或重新进入页面时，触发onShow方法。</li>
-<li>当使用重定向方法wx.redirectTo(object)或关闭当前页返回上一页wx.navigateBack()，触发onUnload。</li>
-</ol>
-<p><strong>总结</strong></p>
-<ul>
-<li>onLoad: 页面加载。一个页面只会调用一次。参数可以获取wx.navigateTo和wx.redirectTo及中的 query。</li>
-<li>onShow: 页面显示。每次打开页面都会调用一次。</li>
-<li>onReady: 页面初次渲染完成。一个页面只会调用一次，代表页面已经准备妥当，可以和视图层进行交互。对界面的设置如wx.setNavigationBarTitle请在onReady之后设置。</li>
-<li>onHide: 页面隐藏。当navigateTo或底部tab切换时调用。</li>
-<li>onUnload: 页面卸载。当redirectTo或navigateBack的时候调用。</li>
-</ul>
-<h4 id="3-组件生命周期函数"><a href="#3-组件生命周期函数" class="headerlink" title="3. 组件生命周期函数"></a>3. 组件生命周期函数</h4><p>在小程序中 ，通过Component()来注册一个组件 。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Component</span>(&#123;</span><br><span class="line">  <span class="attr">properties</span>: &#123;</span><br><span class="line">    <span class="attr">imageList</span>:&#123;</span><br><span class="line">      <span class="attr">type</span>:<span class="title class_">Array</span>,</span><br><span class="line">      <span class="attr">value</span>:[]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">created</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;created组件创建完成&#x27;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">attached</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;attached组件挂在到页面&#x27;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">detached</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;detached组件脱离页面&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>参考链接：<a href="https://blog.csdn.net/m0_67394230/article/details/123368436">https://blog.csdn.net/m0_67394230/article/details/123368436</a></p>
+<p>   <a href="https://juejin.cn/post/7098605987925327902">https://juejin.cn/post/7098605987925327902</a></p>
+<h2 id="二、redirect（重定向）"><a href="#二、redirect（重定向）" class="headerlink" title="二、redirect（重定向）"></a>二、redirect（重定向）</h2><p>重定向也是通过 routes 配置来完成，下面例子是从 &#x2F;home 重定向到 &#x2F;：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [&#123; <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>, <span class="attr">redirect</span>: <span class="string">&#x27;/&#x27;</span> &#125;]</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>created()：组件实例刚刚被创建好时触发。</li>
-<li>attached()：在组件完全初始化完毕、进入页面节点树后触发。</li>
-<li>detached() 组件离开页面节点树后触发。</li>
-</ul>
-]]></content>
+<p>重定向的目标也可以是一个命名的路由：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [&#123; <span class="attr">path</span>: <span class="string">&#x27;/home&#x27;</span>, <span class="attr">redirect</span>: &#123; <span class="attr">name</span>: <span class="string">&#x27;homepage&#x27;</span> &#125; &#125;]</span><br></pre></td></tr></table></figure>
+
+<p>甚至是一个方法，动态返回重定向目标：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// /search/screens -&gt; /search?q=screens</span></span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/search/:searchText&#x27;</span>,</span><br><span class="line">    <span class="attr">redirect</span>: <span class="function"><span class="params">to</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 方法接收目标路由作为参数</span></span><br><span class="line">      <span class="comment">// return 重定向的字符串路径/路径对象</span></span><br><span class="line">      <span class="keyword">return</span> &#123; <span class="attr">path</span>: <span class="string">&#x27;/search&#x27;</span>, <span class="attr">query</span>: &#123; <span class="attr">q</span>: to.<span class="property">params</span>.<span class="property">searchText</span> &#125; &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/search&#x27;</span>,</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>以及示例代码中路由三的写法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">path</span>: <span class="string">&#x27;/c/:code&#x27;</span>,</span><br><span class="line">  <span class="attr">redirect</span>: <span class="function">(<span class="params">to</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; params &#125; = to;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;/productList?code=&#x27;</span> + params.<span class="property">code</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、相对重定向"><a href="#三、相对重定向" class="headerlink" title="三、相对重定向"></a>三、相对重定向</h2><p>重定向到相对位置：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// 将总是把/users/123/posts重定向到/users/123/profile。</span></span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;/users/:id/posts&#x27;</span>,</span><br><span class="line">    <span class="attr">redirect</span>: <span class="function"><span class="params">to</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 该函数接收目标路由作为参数</span></span><br><span class="line">      <span class="comment">// 相对位置不以`/`开头</span></span><br><span class="line">      <span class="comment">// 或 &#123; path: &#x27;profile&#x27;&#125;</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;profile&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、路由传参"><a href="#四、路由传参" class="headerlink" title="四、路由传参"></a>四、路由传参</h2><h3 id="路由传参：params"><a href="#路由传参：params" class="headerlink" title="路由传参：params"></a>路由传参：params</h3><h4 id="传"><a href="#传" class="headerlink" title="传"></a>传</h4><p>1.动态路由匹配（路由配置里写）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">name</span>:<span class="string">&quot;user&quot;</span>, <span class="attr">path</span>: <span class="string">&#x27;/user/:id&#x27;</span>, <span class="attr">component</span>: <span class="title class_">User</span> &#125;   <span class="comment">//id：相当于声明了变量</span></span><br></pre></td></tr></table></figure>
+
+<p>2.跳转时传参</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>)、跳转时，使用字符串</span><br><span class="line"><span class="comment">//声明式</span></span><br><span class="line">&lt;router-link to=<span class="string">&quot;/user/01001&quot;</span>&gt;用户<span class="number">01001</span>的信息&lt;/router-link&gt;</span><br><span class="line"><span class="comment">//编程式</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(<span class="string">&quot;/user/01001&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>）、跳转时，使用对象</span><br><span class="line"><span class="comment">//声明式： 命名的路由，同时传参</span></span><br><span class="line">&lt;router-link :to=<span class="string">&quot;&#123; name: &#x27;user&#x27;, params: &#123; id: &#x27;01001&#x27; &#125;&#125;&quot;</span>&gt;<span class="title class_">User</span>&lt;/router-link&gt;</span><br><span class="line"><span class="comment">//编程式：</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123; <span class="attr">name</span>: <span class="string">&#x27;user&#x27;</span>, <span class="attr">params</span>: &#123; <span class="attr">id</span>: <span class="string">&#x27;01001&#x27;</span> &#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="接"><a href="#接" class="headerlink" title="接"></a>接</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//模板里的写法：</span></span><br><span class="line">$route.<span class="property">params</span>.参数名</span><br><span class="line"></span><br><span class="line"><span class="comment">//脚本里的写法:</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">params</span>.参数名</span><br></pre></td></tr></table></figure>
+
+<h3 id="路由传参：query"><a href="#路由传参：query" class="headerlink" title="路由传参：query"></a>路由传参：query</h3><h4 id="传-1"><a href="#传-1" class="headerlink" title="传"></a>传</h4><p>1.路由配置不用改（不用动态路由匹配）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">path</span>: <span class="string">&#x27;/user&#x27;</span>, <span class="attr">component</span>: <span class="title class_">User</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.跳转时，使用 path</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//跳转时，使用字符串</span></span><br><span class="line"><span class="comment">//声明式： </span></span><br><span class="line">&lt;router-link to=<span class="string">&quot;/Reg?userid=007&amp;username=mjl&quot;</span>&gt;<span class="title class_">User</span>&lt;/router-link&gt;</span><br><span class="line"><span class="comment">//编程式：</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(<span class="string">&quot;/Reg?userid=007&amp;username=mjl&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//跳转时，使用对象：</span></span><br><span class="line"><span class="comment">//声明式： </span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">:to</span>=<span class="string">&quot;&#123; path: &#x27;/user&#x27;, query: &#123; id: &#x27;01001&#x27; &#125;&#125;&quot;</span>&gt;</span>User<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span></span><br><span class="line"><span class="comment">//编程式：</span></span><br><span class="line">$router.<span class="title function_">push</span>(&#123; <span class="attr">path</span>: <span class="string">&#x27;/user&#x27;</span>, <span class="attr">query</span>: &#123; <span class="attr">id</span>: <span class="string">&#x27;01001&#x27;</span> &#125;&#125;)</span><br><span class="line"></span><br><span class="line">注意：如果提供了 path，那么params 会被忽略</span><br><span class="line"><span class="comment">// 带查询参数，变成 /user?id=01001</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">params和query的对象写法的区别：</span><br><span class="line">name 对应params</span><br><span class="line">path对应query</span><br></pre></td></tr></table></figure>
+
+<h4 id="接-1"><a href="#接-1" class="headerlink" title="接"></a>接</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//模板里的写法：</span></span><br><span class="line">$route.<span class="property">query</span>.参数名</span><br><span class="line"></span><br><span class="line"><span class="comment">//脚本里的写法:</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">query</span>.参数名</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">使用场景的区别：</span><br><span class="line">query：传递多个参数时，query方式对应的地址栏上好阅读。</span><br><span class="line">params：传递一个参数时</span><br></pre></td></tr></table></figure>
+
+<h3 id="路由传参和props"><a href="#路由传参和props" class="headerlink" title="路由传参和props"></a>路由传参和props</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"> 一个组件在项目中，有两种使用方式（组件显示在浏览器上）：</span><br><span class="line">   1、标签的方式，外部给组件传数据，用props   </span><br><span class="line">   2、使用路由跳转的方式，外部给组件传数据，用params或者query。</span><br><span class="line">     如果， 一个组件需要从外部传入数据， 并且在项目中，这两种方式的使用都会出现，那么，在组件内部就需要适应这两种情况。</span><br><span class="line"> 如何使用 `props` 属性将组件和路由解耦： </span><br><span class="line">`props` 被设置为 `true`，`route.params` 将会被设置为组件属性。 </span><br></pre></td></tr></table></figure>
+
+<h4 id="路由配置："><a href="#路由配置：" class="headerlink" title="路由配置："></a>路由配置：</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">path</span>: <span class="string">&#x27;/user/:id&#x27;</span>, <span class="attr">component</span>: <span class="title class_">User</span>, <span class="attr">props</span>: <span class="literal">true</span> &#125;,</span><br></pre></td></tr></table></figure>
+
+<h4 id="组件："><a href="#组件：" class="headerlink" title="组件："></a>组件：</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">User</span> = &#123;</span><br><span class="line">  <span class="attr">props</span>: [<span class="string">&#x27;id&#x27;</span>],</span><br><span class="line">  <span class="attr">template</span>: <span class="string">&#x27;&lt;div&gt;User &#123;&#123; id &#125;&#125;&lt;/div&gt;&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>小程序</category>
+        <category>vue</category>
       </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
   </entry>
   <entry>
     <title>【微信小程序】组件的生命周期及自定义组件</title>
-    <url>/2023/08/02/%E3%80%90%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E3%80%91%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6/</url>
+    <url>/2023/07/23/%E3%80%90%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E3%80%91%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6/</url>
     <content><![CDATA[<h1 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h1><p>组件的生命周期，指的是<strong>组件自身</strong>的一些函数，这些函数在特殊的时间点或遇到一些特殊的框架事件时被自动触发。<br>其中，最重要的生命周期是 created、attached、 detached ，包含一个组件实例生命流程的最主要时间点。</p>
 <h2 id="自定义组件的生命周期函数"><a href="#自定义组件的生命周期函数" class="headerlink" title="自定义组件的生命周期函数"></a>自定义组件的生命周期函数</h2><p>小程序组件可用的全部生命周期如下表所示:  </p>
 <table>
@@ -1476,8 +1395,89 @@
       </tags>
   </entry>
   <entry>
+    <title>【微信小程序】生命周期</title>
+    <url>/2023/09/10/%E3%80%90%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E3%80%91%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+    <content><![CDATA[<h3 id="什么是生命周期？"><a href="#什么是生命周期？" class="headerlink" title="什么是生命周期？"></a>什么是生命周期？</h3><p>生命周期是指一个小程序从创建到销毁的一系列过程、</p>
+<h3 id="小程序的三种生命周期"><a href="#小程序的三种生命周期" class="headerlink" title="小程序的三种生命周期"></a>小程序的三种生命周期</h3><p>在小程序中 ，通过App()来注册一个小程序 ，通过Page()来注册一个页面，通过Component()来注册一个组件</p>
+<h3 id="生命周期简述"><a href="#生命周期简述" class="headerlink" title="生命周期简述"></a>生命周期简述</h3><p><strong>全局</strong></p>
+<ol>
+<li>用户首次打开小程序，触发 onLaunch 方法（全局只触发一次）。</li>
+<li>小程序初始化完成后，触发 onShow 方法，监听小程序显示。</li>
+<li>小程序从前台进入后台，触发 onHide 方法。</li>
+<li>小程序从后台进入前台显示，触发 onShow 方法。</li>
+<li>小程序后台运行一定时间，或系统资源占用过高，会被销毁。</li>
+</ol>
+<p>​      全局的 getApp() 函数可以用来获取到小程序 App 实例。</p>
+<p><strong>页面</strong></p>
+<ul>
+<li>小程序注册完成后，加载页面，触发onLoad方法。</li>
+<li>页面载入后触发onShow方法，显示页面。</li>
+<li>首次显示页面，会触发onReady方法，渲染页面元素和样式，一个页面只会调用一次。</li>
+<li>当小程序后台运行或跳转到其他页面时，触发onHide方法。</li>
+<li>当小程序有后台进入到前台运行或重新进入页面时，触发onShow方法。</li>
+<li>当使用重定向方法wx.redirectTo(object)或关闭当前页返回上一页wx.navigateBack()，触发onUnload。</li>
+</ul>
+<h3 id="生命周期详解"><a href="#生命周期详解" class="headerlink" title="生命周期详解"></a>生命周期详解</h3><h4 id="1-小程序应用的生命周期"><a href="#1-小程序应用的生命周期" class="headerlink" title="1. 小程序应用的生命周期"></a>1. 小程序应用的生命周期</h4><p>App()函数用来注册一个小程序。接受一个 Object参数，其指定小程序的生命周期回调等。App() 必须在 app.js 中调用，必须调用且只能调用一次。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">App</span>(&#123;</span><br><span class="line">  <span class="attr">onLaunch</span>: <span class="keyword">function</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">// 监听小程序初始化。小程序初始化完成时（全局只触发一次）</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onShow</span>: <span class="keyword">function</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">// 监听小程序显示。小程序启动，或从后台进入前台显示时</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onHide</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 监听小程序隐藏。小程序从前台进入后台时。</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onError</span>: <span class="keyword">function</span>(<span class="params">msg</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(msg) <span class="comment">// 错误监听函数。小程序发生脚本错误，或者 api 调用失败时触发，会带上错误信息</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onPageNotFound</span>: <span class="keyword">function</span>(<span class="params">res</span>) &#123;</span><br><span class="line">    <span class="comment">// 页面不存在监听函数。小程序要打开的页面不存在时触发，会带上页面信息回调该函数</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">globalData</span>: <span class="string">&#x27;I am global data&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>前台、后台定义：</strong> 当用户点击左上角关闭，或者按了设备 Home 键离开微信，小程序并没有直接销毁，而是进入了后台；当再次进入微信或再次打开小程序，又会从后台进入前台。</p>
+<p><strong>应用生命周期图解：</strong></p>
+<p><img src="/../images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F1.png" alt="img"></p>
+<ol>
+<li>用户首次打开小程序，触发 onLaunch 方法（全局只触发一次）。</li>
+<li>小程序初始化完成后，触发 onShow 方法，监听小程序显示。</li>
+<li>小程序从前台进入后台，触发 onHide 方法。</li>
+<li>小程序从后台进入前台显示，触发 onShow 方法。</li>
+<li>小程序后台运行一定时间，或系统资源占用过高，会被销毁。</li>
+<li>全局的 getApp() 函数可以用来获取到小程序 App 实例。</li>
+</ol>
+<p><strong>注意：</strong></p>
+<ol>
+<li>不要在定义于 App() 内的函数中调用 getApp() ，使用 this 就可以拿到 app 实例。</li>
+<li>通过 getApp() 获取实例之后，不要私自调用生命周期函数。</li>
+</ol>
+<p>从中我们可以知道小程序的生命周期函数的调用顺序为：onLaunch&gt;onShow&gt;onHide</p>
+<h4 id="2-页面的生命周期"><a href="#2-页面的生命周期" class="headerlink" title="2. 页面的生命周期"></a>2. 页面的生命周期</h4><p>Page(Object)函数用来注册一个页面。接受一个 Object类型参数，其指定页面的初始数据、生命周期回调、事件处理函数等。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Page</span>(&#123;</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="comment">// 页面的初始数据</span></span><br><span class="line">    <span class="attr">text</span>: <span class="string">&quot;This is page data.&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onLoad</span>: <span class="keyword">function</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面加载</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onReady</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面初次渲染完成</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onShow</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面显示</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onHide</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面隐藏</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onUnload</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 生命周期回调—监听页面卸载</span></span><br><span class="line">  &#125;,</span><br><span class="line"><span class="comment">//  ---------------以下不是生命周期钩子函数----------------</span></span><br><span class="line">  <span class="attr">onPullDownRefresh</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 监听用户下拉动作</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onReachBottom</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 页面上拉触底事件的处理函数</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onShareAppMessage</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 用户点击右上角转发</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onPageScroll</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 页面滚动触发事件的处理函数</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">onResize</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 页面尺寸改变时触发</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">onTabItemTap</span>(<span class="params">item</span>) &#123;</span><br><span class="line">    <span class="comment">// 当前是 tab 页时，点击 tab 时触发</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item.<span class="property">index</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item.<span class="property">pagePath</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(item.<span class="property">text</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 任意的函数，在页面的函数中用 this 可以访问</span></span><br><span class="line">  <span class="attr">viewTap</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">text</span>: <span class="string">&#x27;Set some data for updating view.&#x27;</span></span><br><span class="line">    &#125;, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// this is setData callback</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 任意数据，在页面的函数中用 this 可以访问</span></span><br><span class="line">  <span class="attr">customData</span>: &#123;</span><br><span class="line">    <span class="attr">hi</span>: <span class="string">&#x27;MINA&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>从中我们可以知道小程序页面的生命周期函数的调用顺序为：onLoad&gt;onShow&gt;onReady。</li>
+<li>至于onHide函数就是当隐藏页面的时候触发。</li>
+</ul>
+<p><strong>页面生命周期图解：</strong></p>
+<p><img src="/../images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F2.png" alt="img"></p>
+<ol>
+<li>小程序注册完成后，加载页面，触发onLoad方法。</li>
+<li>页面载入后触发onShow方法，显示页面。</li>
+<li>首次显示页面，会触发onReady方法，渲染页面元素和样式，一个页面只会调用一次。</li>
+<li>当小程序后台运行或跳转到其他页面时，触发onHide方法。</li>
+<li>当小程序有后台进入到前台运行或重新进入页面时，触发onShow方法。</li>
+<li>当使用重定向方法wx.redirectTo(object)或关闭当前页返回上一页wx.navigateBack()，触发onUnload。</li>
+</ol>
+<p><strong>总结</strong></p>
+<ul>
+<li>onLoad: 页面加载。一个页面只会调用一次。参数可以获取wx.navigateTo和wx.redirectTo及中的 query。</li>
+<li>onShow: 页面显示。每次打开页面都会调用一次。</li>
+<li>onReady: 页面初次渲染完成。一个页面只会调用一次，代表页面已经准备妥当，可以和视图层进行交互。对界面的设置如wx.setNavigationBarTitle请在onReady之后设置。</li>
+<li>onHide: 页面隐藏。当navigateTo或底部tab切换时调用。</li>
+<li>onUnload: 页面卸载。当redirectTo或navigateBack的时候调用。</li>
+</ul>
+<h4 id="3-组件生命周期函数"><a href="#3-组件生命周期函数" class="headerlink" title="3. 组件生命周期函数"></a>3. 组件生命周期函数</h4><p>在小程序中 ，通过Component()来注册一个组件 。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Component</span>(&#123;</span><br><span class="line">  <span class="attr">properties</span>: &#123;</span><br><span class="line">    <span class="attr">imageList</span>:&#123;</span><br><span class="line">      <span class="attr">type</span>:<span class="title class_">Array</span>,</span><br><span class="line">      <span class="attr">value</span>:[]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">created</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;created组件创建完成&#x27;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">attached</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;attached组件挂在到页面&#x27;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">detached</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;detached组件脱离页面&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>created()：组件实例刚刚被创建好时触发。</li>
+<li>attached()：在组件完全初始化完毕、进入页面节点树后触发。</li>
+<li>detached() 组件离开页面节点树后触发。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>小程序</category>
+      </categories>
+  </entry>
+  <entry>
     <title>【微信小程序】自定义导航栏</title>
-    <url>/2023/09/16/%E3%80%90%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E3%80%91%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F/</url>
+    <url>/2023/08/16/%E3%80%90%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E3%80%91%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F/</url>
     <content><![CDATA[<h2 id="自定义导航栏"><a href="#自定义导航栏" class="headerlink" title="自定义导航栏"></a>自定义导航栏</h2><p>1、设置导航栏style为custom：<br><img src="/../images/%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%A0%8F.png" alt="image.png"><br>2、设置完毕后发现页面内容跑到了页面的顶端<br>3、然后定义一个components，就是我们自定义的导航栏组件：<br>（1）先在项目根目录创建一个components文件夹，这个文件夹的名称是固定的，就是components：<br>（2）文件夹内创建一个导航栏组件的文件夹：</p>
 ]]></content>
       <categories>
@@ -1486,7 +1486,7 @@
   </entry>
   <entry>
     <title>异步</title>
-    <url>/2023/09/16/%E5%BC%82%E6%AD%A5/</url>
+    <url>/2023/09/06/%E5%BC%82%E6%AD%A5/</url>
     <content><![CDATA[<h1 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h1><p>通常在我们的理解下，同步就是同时运行嘛。 ❌，大错特错❌</p>
 <h3 id="那在计算机语言中，什么是同步和异步呢？"><a href="#那在计算机语言中，什么是同步和异步呢？" class="headerlink" title="那在计算机语言中，什么是同步和异步呢？"></a>那在计算机语言中，什么是同步和异步呢？</h3><p>异步（Asynchronous, async）是与同步（Synchronous, sync）相对的概念。在我们学习的传统单线程编程中，程序的运行是同步的（同步不意味着所有步骤同时运行，而是指步骤在一个控制流序列中按顺序执行）。而异步的概念则是不保证同步的概念，也就是说，一个异步过程的执行将不再与原有的序列有顺序关系。</p>
 <p>​        简单来理解就是：同步按你的代码顺序执行，就是一件事一件事的执行。只有前一个任务执行完毕，才能执行后一个任务；异步不按照代码顺序执行。异步的执行效率更高。</p>
@@ -1524,7 +1524,7 @@
   </entry>
   <entry>
     <title>生命周期（Vue2）</title>
-    <url>/2023/09/16/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%88Vue2%EF%BC%89/</url>
+    <url>/2023/08/20/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%88Vue2%EF%BC%89/</url>
     <content><![CDATA[<h1 id="生命周期（Vue2）"><a href="#生命周期（Vue2）" class="headerlink" title="生命周期（Vue2）"></a>生命周期（Vue2）</h1><p>本章核心内容：</p>
 <ul>
 <li>Vue的生命周期到底是什么</li>
